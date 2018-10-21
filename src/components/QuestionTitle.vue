@@ -21,7 +21,7 @@
   color: #000;
   margin: 0 auto;
   margin-top: 0.99rem;
-  margin-bottom: .213333rem /* 8/37.5 */;
+  margin-bottom: .99rem /* 8/37.5 */;
   white-space: nowrap;
 }
 

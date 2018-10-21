@@ -1,122 +1,125 @@
 <template>
   <Fade>
     <div id="result">
-      <Poster class="poster"></Poster>
-      <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
-      <Button word="重新测一次" class="button"></Button>
-      <Swiper></Swiper>
-      <div id="invite">
-        <p>您已经邀请<span>3</span>名好友</p>
-      </div>
-      <div class="invite-list-wrapper">
-        <div id="invite-list" ref="wrapper">
-          <div class="content">
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
-            </div>
-            <div class="img-wrapper">
-              <img src="../assets/images/close_icon.png" alt="">
+      <div class="result-wrapper">
+        <Poster class="poster"></Poster>
+        <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
+        <Button word="重新测一次" class="button"></Button>
+        <Swiper></Swiper>
+        <div id="invite">
+          <p>您已经邀请<span>3</span>名好友</p>
+        </div>
+        <div class="invite-list-wrapper">
+          <div id="invite-list" ref="wrapper">
+            <div class="content">
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
+              <div class="img-wrapper">
+                <img src="../assets/images/close_icon.png" alt="">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="rule">
-        <div class="title">规则说明</div>
-        <div class="title-second">秀出你的超级IP给好友吧</div>
-        <div class="rule-content">
-          <p>6名好友关注即可获得<span>300</span>元代金券</p>
-          <p>6名好友关注即可获得<span>600</span>元代金券</p>
-          <p>6名好友关注即可获得<span>3000</span>元代金券</p>
-        </div>
-        <div class="notice">
-          <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
+        <div class="rule">
+          <div class="title">规则说明</div>
+          <div class="title-second">秀出你的超级IP给好友吧</div>
+          <div class="rule-content">
+            <p>6名好友关注即可获得<span>300</span>元代金券</p>
+            <p>6名好友关注即可获得<span>600</span>元代金券</p>
+            <p>6名好友关注即可获得<span>3000</span>元代金券</p>
+          </div>
+          <div class="notice">
+            <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
+          </div>
         </div>
       </div>
     </div>
+
   </Fade>
 </template>
 
@@ -148,15 +151,17 @@
     mounted() {
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.wrapper)
-        console.log(this.scroll)
       })
     }
   }
 </script>
 
 <style scoped>
-  #result {
-    background: #fff
+  #result .result-wrapper{
+    width:100%;
+    height:100%;
+    background: #fff;
+    position:relative;
   }
 
   #result .rule-position {
@@ -170,6 +175,7 @@
 
   #result .button {
     margin-bottom: 0.80rem;
+    position:static
   }
 
   #invite {

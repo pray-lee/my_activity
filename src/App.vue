@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Music></Music>
+    <Music :status="musicStatus"></Music>
     <Background></Background>
     <router-view/>
   </div>
@@ -11,6 +11,13 @@ import Music from '@/components/music'
 import Background from '@/components/Background'
 export default {
   name: 'App',
+  data() {
+    return {
+      musicStatus: {
+        type: true
+      }
+    }
+  },
   components: {
     Music,
     Background
@@ -28,5 +35,4 @@ export default {
 #app{
   width: 10rem;
 }
-
 </style>

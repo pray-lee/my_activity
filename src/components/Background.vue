@@ -19,6 +19,6 @@
   bottom:0;
   background:url('../assets/images/bg.jpg') center center no-repeat;
   background-size: cover;
-  z-index: -1
+  z-index: -9999
 }
 </style>
