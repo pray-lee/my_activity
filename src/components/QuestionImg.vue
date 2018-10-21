@@ -24,7 +24,7 @@
           <Checkbox checkId="img_radio3" checkFor="img_radio3" name="radio"></Checkbox>
         </div>
       </div>
-      <router-link to="/question_word">
+      <router-link :to="{name: 'wordType', params:{id: 1}}">
         <Button word="下一题" class="button"></Button>
       </router-link>
     </div>

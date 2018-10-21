@@ -7,7 +7,7 @@
         <question checkId="two" checkFor="two" name="radio1"></question>
         <question checkId="three" checkFor="three" name="radio1"></question>
      </div>
-     <router-link to="/result">
+     <router-link :to="{name: 'Result'}">
        <Button word="下一题" class="button"></Button>
      </router-link>
    </div>

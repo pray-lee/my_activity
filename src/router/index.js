@@ -20,16 +20,14 @@ export default new Router({
           component: Rule
         },
       ]
-    },
-    {
-      path: '/question_word',
-      name: 'QuestionWord',
-      component: QuestionWord
-    },
-    {
-      path: '/question_img',
-      name: 'QuestionImg',
+    },{
+      path: '/imgType/:id',
+      name: 'imgType',
       component: QuestionImg
+    },{
+      path: '/wordType/:id',
+      name: 'wordType',
+      component: QuestionWord
     },
     {
       path: '/result',

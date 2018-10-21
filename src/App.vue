@@ -2,7 +2,7 @@
   <div id="app">
     <Music :status="musicStatus"></Music>
     <Background></Background>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       musicStatus: {
-        type: true
+        type: false
       }
     }
   },
