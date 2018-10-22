@@ -7,9 +7,7 @@
         <question checkId="two" checkFor="two" name="radio1"></question>
         <question checkId="three" checkFor="three" name="radio1"></question>
      </div>
-     <router-link :to="{name: 'Result'}">
-       <Button word="下一题" class="button"></Button>
-     </router-link>
+     <!--<Button word="下一题" class="button" @click.native="changeRoute"></Button>-->
    </div>
   </Fade>
 </template>
@@ -17,16 +15,24 @@
 <script>
   import QuestionTitle from '@/components/QuestionTitle';
   import Question from '@/components/Question';
-  import Button from '@/components/Button'
+  // import Button from '@/components/Button'
   import Fade from '@/components/Fade'
+  // import Listener from '@/common/eventBus'
   export default {
     name: "QuestionWord",
+    props: ['param'],
     components: {
-      Button,
+      // Button,
       QuestionTitle,
       Question,
       Fade
-    }
+    },
+    // methods: {
+    //   changeRoute() {
+    //     // this.$router.push({name: 'imgType', params: {id:2}})
+    //     Listener.$emit('receiveId', this.param.id)
+    //   }
+    // }
   }
 </script>
 

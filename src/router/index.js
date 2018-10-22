@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import QuestionImg from '@/components/QuestionImg'
-import QuestionWord from '@/components/QuestionWord'
+// import QuestionImg from '@/components/QuestionImg'
+// import QuestionWord from '@/components/QuestionWord'
+import QuestionWrapper from '@/components/QuestionWrapper'
 import IndexPage from '@/components/IndexPage'
 import Rule from '@/components/Rule'
 import Result from '@/components/Result'
@@ -20,14 +21,11 @@ export default new Router({
           component: Rule
         },
       ]
-    },{
-      path: '/imgType/:id',
-      name: 'imgType',
-      component: QuestionImg
-    },{
-      path: '/wordType/:id',
-      name: 'wordType',
-      component: QuestionWord
+    },
+    {
+      path: '/question',
+      name: 'QuestionWrapper',
+      component: QuestionWrapper,
     },
     {
       path: '/result',

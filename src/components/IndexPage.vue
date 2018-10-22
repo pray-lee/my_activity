@@ -3,7 +3,7 @@
    <div id="index-page">
      <QuestionTitle title="设计世界的你"></QuestionTitle>
      <RuleButton :displayObj="showOrHide" class="rule-button"></RuleButton>
-     <router-link :to="{name: 'imgType', params: {id:1}}">
+     <router-link to="/question">
        <Button word="开启我的平行世界" class="page-button"></Button>
      </router-link>
    </div>

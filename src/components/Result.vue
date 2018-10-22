@@ -4,7 +4,7 @@
       <div class="result-wrapper">
         <Poster class="poster"></Poster>
         <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
-        <Button word="重新测一次" class="button"></Button>
+        <Button word="重新测一次" class="button" @click.native="goBack"></Button>
         <Swiper></Swiper>
         <div id="invite">
           <p>您已经邀请<span>3</span>名好友</p>
@@ -152,6 +152,11 @@
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.wrapper)
       })
+    },
+    methods: {
+      goBack () {
+        this.$router.push({path: '/question'})
+      }
     }
   }
 </script>

@@ -12,21 +12,11 @@
           <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
         </div>
         <div class="question_img_item">
-          <img src="../assets/images/female.png" alt="">
+          <img src="../assets/images/both.png" alt="">
           <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
-        </div>
-        <div class="question_img_item">
-          <img src="../assets/images/female.png" alt="">
-          <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
-        </div>
-        <div class="question_img_item">
-          <img src="../assets/images/both.png" alt="" class="both_img">
-          <Checkbox checkId="img_radio3" checkFor="img_radio3" name="radio"></Checkbox>
         </div>
       </div>
-      <router-link :to="{name: 'wordType', params:{id: 1}}">
-        <Button word="下一题" class="button"></Button>
-      </router-link>
+      <!--<Button word="下一题" class="button" @click.native="changeRoute"></Button>-->
     </div>
 </Fade>
 </template>
@@ -34,21 +24,24 @@
 <script>
 import Checkbox from '@/components/Checkbox'
 import QuestionTitle from '@/components/QuestionTitle'
-import Button from '@/components/Button'
+// import Button from '@/components/Button'
 import Fade from '@/components/Fade'
+// import Listener from '@/common/eventBus.js, Button'
 export default {
   name: 'QuestionImg',
-  data () {
-    return {
-      
-    }
-  },
+  props:['param'],
   components: {
     QuestionTitle,
-    Button,
+    // Button,
     Checkbox,
     Fade
-  }
+  },
+  // methods: {
+  //   changeRoute() {
+  //     // this.$router.push({name: 'wordType', params: {id: 2}})
+  //     Listener.$emit('receiveId', this.param.id)
+  //   }
+  // }
 }
 </script>
 

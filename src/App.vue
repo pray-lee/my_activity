@@ -9,6 +9,7 @@
 <script>
 import Music from '@/components/music'
 import Background from '@/components/Background'
+import QuestionWrapper from "./components/QuestionWrapper";
 export default {
   name: 'App',
   data() {
@@ -18,7 +19,11 @@ export default {
       }
     }
   },
+  mounted() {
+    console.log(window.location.href)
+  },
   components: {
+    QuestionWrapper,
     Music,
     Background
   }
