@@ -1,8 +1,8 @@
 <template>
   <div id="question">
     <div class="question-wrapper">
-      <p>中华人民共和国中华人民共和国中华人民共和国中华人民</p>
-      <Checkbox :checkId="checkId" :checkFor="checkFor" class="check-item" :name="name" :checked="checked"></Checkbox>
+      <p>{{content}}}</p>
+      <Checkbox :value="value" class="check-item" :name="name" :checked="checked" @change="receiveValue"></Checkbox>
     </div>
   </div>
 </template>
@@ -11,10 +11,15 @@
   import Checkbox from '@/components/Checkbox'
   export default {
     name: 'Question',
-    props: ['checkId', 'checkFor', 'checked', 'name'],
+    props: ['value', 'checked', 'name', 'content'],
     components: {
       Checkbox
-    }   
+    },
+    methods: {
+      receiveValue(val) {
+        this.$emit('change', val)
+      }
+    }
   }
 </script>
 

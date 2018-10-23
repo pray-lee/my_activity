@@ -1,14 +1,14 @@
 <template>
     <div class="img_radio_box">
-        <input type="radio" :id="checkId" class="img_radio" :checked="checked" :name="name">
-        <label :for="checkFor"></label>
+        <input type="radio" :id="value" class="img_radio" :value="value" :checked="checked" :name="name" @change="$emit('change', value)">
+        <label :for="value"></label>
     </div>
 </template>
 
 <script>
   export default {
     name: 'Checkbox',
-    props:['checkId', 'checkFor', 'checked', 'name']
+    props:['value', 'checked', 'name'],
   }
 </script>
 

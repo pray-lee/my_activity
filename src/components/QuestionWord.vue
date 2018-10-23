@@ -3,13 +3,11 @@
    <div id="question-word">
      <QuestionTitle :nameZh="title" nameType=0 nameBg=""></QuestionTitle>
      <div class="question-area">
-        <question checked="checked" checkId="one" checkFor="one" name="radio1"></question>
-        <question checkId="two" checkFor="two" name="radio1"></question>
-        <question checkId="three" checkFor="three" name="radio1"></question>
-       <question checkId="three" checkFor="three" name="radio1"></question>
-       <question checkId="three" checkFor="three" name="radio1"></question>
+       <template v-for="(item,index) in options">
+         <question v-if="index==0" :checked="'checked'" :value="item.okey" :name="qkey" :content="item.ocontent" @change="receiveValue"></question>
+         <question v-else :value="item.okey" :name="qkey" :content="item.ocontent" @change="receiveValue"></question>
+       </template>
      </div>
-     <!--<Button word="下一题" class="button" @click.native="changeRoute"></Button>-->
    </div>
   </Fade>
 </template>
@@ -17,24 +15,20 @@
 <script>
   import QuestionTitle from '@/components/QuestionTitle';
   import Question from '@/components/Question';
-  // import Button from '@/components/Button'
   import Fade from '@/components/Fade'
-  // import Listener from '@/common/eventBus'
   export default {
     name: "QuestionWord",
-    props: ['title', 'options'],
+    props: ['title', 'options', 'qkey'],
     components: {
-      // Button,
       QuestionTitle,
       Question,
       Fade
     },
-    // methods: {
-    //   changeRoute() {
-    //     // this.$router.push({name: 'imgType', params: {id:2}})
-    //     Listener.$emit('receiveId', this.param.id)
-    //   }
-    // }
+    methods: {
+      receiveValue(val) {
+        this.$emit('change', val)
+      }
+    }
   }
 </script>
 
@@ -46,13 +40,5 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  /*margin-top:.8rem !* 30/37.5 *!;*/
-  /*margin-bottom:.8rem !* 30/37.5 *!;*/
 }
-/*#question-word .button{*/
-  /*position: absolute;*/
-  /*bottom: 1.23rem;*/
-  /*left: 50%;*/
-  /*margin-left: -2.906667rem;*/
-/*}*/
 </style>
