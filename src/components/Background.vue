@@ -1,12 +1,15 @@
 <template>
-   <div id="background">
-
+   <div id="background" ref="background">
    </div>
 </template>
 
 <script>
   export default {
-    name: "Background"
+    name: "Background",
+    props: ['url'],
+    mounted() {
+      this.$refs.background.style.background= `url(${this.url}) center center no-repeat`
+    }
   }
 </script>
 

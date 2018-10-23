@@ -1,10 +1,10 @@
 <template>
   <Fade>
    <div id="index-page">
-     <QuestionTitle title="设计世界的你"></QuestionTitle>
-     <RuleButton :displayObj="showOrHide" class="rule-button"></RuleButton>
-     <router-link to="/question">
-       <Button word="开启我的平行世界" class="page-button"></Button>
+     <QuestionTitle v-if="gameData!=null" :nameType="gameData.nameType" :nameBg="gameData.nameBg" :nameZh="gameData.nameZh"></QuestionTitle>
+     <!--<RuleButton :ruleStatus="ruleStatus" class="rule-button"></RuleButton>-->
+     <router-link to="/question" v-if="gameData!=null">
+       <Button :word="gameData.startBtnName" class="page-button"></Button>
      </router-link>
    </div>
   </Fade>
@@ -15,28 +15,18 @@
   import Button from "@/components/Button";
   import RuleButton from "@/components/RuleButton";
   import Fade from "@/components/Fade";
-  import startGame from '@/api/startGame';
+  import Listener from '@/common/eventBus'
   export default {
     name: "IndexPage",
-    data() {
-      return {
-        showOrHide: {
-          show: false
-        }
-      }
-    },
     components: {
       QuestionTitle,
       Button,
       RuleButton,
       Fade
     },
-    mounted() {
-      this._getData()
-    },
-    methods: {
-      _getData () {
-        startGame.getData()
+    computed: {
+      gameData() {
+        return Listener.gameData
       }
     }
   }

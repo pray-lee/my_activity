@@ -1,7 +1,7 @@
 <template>
 <Fade>
 <div id="question_img">
-      <QuestionTitle title="勾选你的性别"></QuestionTitle>
+    <QuestionTitle :nameZh="title" nameType=0 nameBg=""></QuestionTitle>
       <div id="question_img_items_container">
         <div class="question_img_item">
           <img src="../assets/images/male.png" alt="">
@@ -41,7 +41,7 @@ import Fade from '@/components/Fade'
 // import Listener from '@/common/eventBus.js, Button'
 export default {
   name: 'QuestionImg',
-  props:['param'],
+  props:['title', 'options'],
   components: {
     QuestionTitle,
     // Button,

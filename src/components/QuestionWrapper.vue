@@ -1,10 +1,10 @@
 <template>
   <Fade>
-    <div id="question-wrapper">
-      <template v-for="(item, index) of data.data">
+    <div id="question-wrapper" v-if="gameData!=null">
+      <template v-for="(item, index) of gameData.questions">
         <transition enter-active-class="animated fadeIn">
-          <QuestionImg v-if="item.type==='img'" :param="item" ref="ele" v-show="statusArr[index]" :key="item.id"></QuestionImg>
-          <QuestionWord v-if="item.type==='word'" :param="item" ref="ele" v-show="statusArr[index]" :key="item.id"></QuestionWord>
+          <QuestionImg v-if="item.qtype===1" :title="item.qcontent" :qOptions="item.options" ref="ele" v-show="statusArr[index]" :key="item.qKey"></QuestionImg>
+          <QuestionWord v-if="item.qtype===0" :title="item.qcontent" :qOptions="item.options" ref="ele" v-show="statusArr[index]" :key="item.qKey"></QuestionWord>
         </transition>
       </template>
       <Button word="下一题" @click.native="changeView" class="button"></Button>
@@ -16,7 +16,7 @@
 <script>
   import QuestionImg from "./QuestionImg";
   import QuestionWord from "./QuestionWord";
-  // import Listener from "@/common/eventBus";
+  import Listener from "@/common/eventBus";
   import Button from "@/components/Button";
   import Fade from "@/components/Fade";
 
@@ -28,46 +28,20 @@
         count: 0,
         statusArr: [],
         data: {
-          data: [{
-            id:0,
-            type:'img'
-          },{
-            id:1,
-            type: 'word'
-          },{
-            id:3,
-            type: 'word'
-          },{
-            id:4,
-            type:'img'
-          },{
-            id:5,
-            type: 'word'
-          }]
         }
       }
     },
-    // mounted() {
-    //   this.$refs.ele.forEach(item=>{
-    //     item.$el.className = 'hide'
-    //   })
-    //   this.$refs.ele[0].$el.className = 'show'
-    //   Listener.$on('receiveId', (id)=>{
-    //     console.log(this.$refs.ele)
-    //     this.$refs.ele[id].$el.className = "hide"
-    //     if(this.$refs.ele[id+1]){
-    //       this.$refs.ele[id+1].$el.className = 'show'
-    //     }else{
-    //       this.$router.push({path: '/result'})
-    //     }
-    //   })
-    // },
+    computed: {
+      gameData() {
+        return Listener.gameData
+      }
+    },
     mounted() {
+      console.log(this.gameData)
       this.$refs.ele.forEach(() => {
         this.statusArr.push(0)
       })
       this.statusArr[0] = 1
-      console.log(this.statusArr)
     },
     methods: {
       changeView() {

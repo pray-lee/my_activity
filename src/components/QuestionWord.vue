@@ -1,7 +1,7 @@
 <template>
   <Fade>
    <div id="question-word">
-     <QuestionTitle title="我的艺术态度"></QuestionTitle>
+     <QuestionTitle :nameZh="title" nameType=0 nameBg=""></QuestionTitle>
      <div class="question-area">
         <question checked="checked" checkId="one" checkFor="one" name="radio1"></question>
         <question checkId="two" checkFor="two" name="radio1"></question>
@@ -22,7 +22,7 @@
   // import Listener from '@/common/eventBus'
   export default {
     name: "QuestionWord",
-    props: ['param'],
+    props: ['title', 'options'],
     components: {
       // Button,
       QuestionTitle,

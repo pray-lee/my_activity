@@ -1,14 +1,18 @@
 import axios from 'axios'
 import config from './config'
-console.log(config, axios)
+
 export default {
   getData() {
-    axios.get(`${config.host}/game/start`)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    return new Promise((resolve) => {
+      axios.get(`${config.host}/game/start`)
+        .then(res => {
+          if (res.code != 0) {
+            resolve(res.data)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
   }
 }
