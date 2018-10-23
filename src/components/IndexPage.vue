@@ -15,6 +15,7 @@
   import Button from "@/components/Button";
   import RuleButton from "@/components/RuleButton";
   import Fade from "@/components/Fade";
+  import startGame from '@/api/startGame';
   export default {
     name: "IndexPage",
     data() {
@@ -29,6 +30,14 @@
       Button,
       RuleButton,
       Fade
+    },
+    mounted() {
+      this._getData()
+    },
+    methods: {
+      _getData () {
+        startGame.getData()
+      }
     }
   }
 </script>

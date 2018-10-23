@@ -7,7 +7,7 @@
           <QuestionWord v-if="item.type==='word'" :param="item" ref="ele" v-show="statusArr[index]" :key="item.id"></QuestionWord>
         </transition>
       </template>
-      <Button word="下一题" @click.native="changeView"></Button>
+      <Button word="下一题" @click.native="changeView" class="button"></Button>
       <router-view name="QuestionWrapper"></router-view>
     </div>
   </Fade>
@@ -88,4 +88,10 @@
 </script>
 
 <style scoped>
+#question-wrapper .button{
+  position: absolute;
+  bottom: 1.23rem;
+  left: 50%;
+  margin-left: -2.906667rem;
+}
 </style>

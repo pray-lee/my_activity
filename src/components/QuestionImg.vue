@@ -15,6 +15,18 @@
           <img src="../assets/images/both.png" alt="">
           <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
         </div>
+        <div class="question_img_item">
+          <img src="../assets/images/both.png" alt="">
+          <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
+        </div>
+        <div class="question_img_item">
+          <img src="../assets/images/both.png" alt="">
+          <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
+        </div>
+        <div class="question_img_item">
+          <img src="../assets/images/both.png" alt="">
+          <Checkbox checkId="img_radio2" checkFor="img_radio2" name="radio"></Checkbox>
+        </div>
       </div>
       <!--<Button word="下一题" class="button" @click.native="changeRoute"></Button>-->
     </div>
@@ -54,7 +66,7 @@ export default {
   flex-wrap: wrap;
   justify-content:center;
   align-items: center;
-  height: 60vh;
+  height: 58vh;
 }
 .question_img_item{
   margin: 0 .3rem;
@@ -69,10 +81,10 @@ export default {
   margin: 0 auto;
   margin-bottom: .8rem /* 30/37.5 */;
 }
-#question_img .button{
-  position: absolute;
-  bottom: 1.23rem;
-  left: 50%;
-  margin-left: -2.906667rem;
-}
+/*#question_img .button{*/
+  /*position: absolute;*/
+  /*bottom: 1.23rem;*/
+  /*left: 50%;*/
+  /*margin-left: -2.906667rem;*/
+/*}*/
 </style>

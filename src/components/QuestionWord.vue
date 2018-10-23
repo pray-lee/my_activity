@@ -6,6 +6,8 @@
         <question checked="checked" checkId="one" checkFor="one" name="radio1"></question>
         <question checkId="two" checkFor="two" name="radio1"></question>
         <question checkId="three" checkFor="three" name="radio1"></question>
+       <question checkId="three" checkFor="three" name="radio1"></question>
+       <question checkId="three" checkFor="three" name="radio1"></question>
      </div>
      <!--<Button word="下一题" class="button" @click.native="changeRoute"></Button>-->
    </div>
@@ -40,17 +42,17 @@
 .question-area{
   display:flex;
   width: 7.893333rem /* 296/37.5 */;
-  height: 60vh;
+  height: 58vh;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
   /*margin-top:.8rem !* 30/37.5 *!;*/
   /*margin-bottom:.8rem !* 30/37.5 *!;*/
 }
-#question-word .button{
-  position: absolute;
-  bottom: 1.23rem;
-  left: 50%;
-  margin-left: -2.906667rem;
-}
+/*#question-word .button{*/
+  /*position: absolute;*/
+  /*bottom: 1.23rem;*/
+  /*left: 50%;*/
+  /*margin-left: -2.906667rem;*/
+/*}*/
 </style>
