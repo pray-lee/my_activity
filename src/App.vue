@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-if="gameData!=null">
-    <Music :status="musicStatus"></Music>
+    <Music :status="musicStatus" :src="gameData.bgMusic"></Music>
     <Background :url="gameData.bgImg"></Background>
     <router-view></router-view>
   </div>

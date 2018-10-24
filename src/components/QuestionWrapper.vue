@@ -3,9 +3,9 @@
     <div id="question-wrapper" v-if="gameData!=null">
       <template v-for="(item, index) of gameData.questions">
         <transition enter-active-class="animated fadeIn">
-          <QuestionImg :isClicked="isClicked" v-if="item.qtype===1" :title="item.qcontent" :options="item.options" :qkey="item.qkey" ref="ele"
+          <QuestionImg :isChangeOver="item.isChangingOver" :isClicked="isClicked" v-if="item.qtype===1" :title="item.qcontent" :options="item" :qkey="item.qkey" ref="ele"
                        v-show="statusArr[index]" :key="item.qKey" @change="receiveValue"></QuestionImg>
-          <QuestionWord isClicked="isClicked" v-else :title="item.qcontent" :options="item.options" :qkey="item.qkey" ref="ele"
+          <QuestionWord :isChangeOver="item.isChangingOver" :isClicked="isClicked" v-else :title="item.qcontent" :options="item" :qkey="item.qkey" ref="ele"
                         v-show="statusArr[index]" :key="item.qKey" @change="receiveValue"></QuestionWord>
         </transition>
       </template>
@@ -32,8 +32,9 @@
       return {
         count: 0,
         statusArr: [],
-        options: {
-          id: Listener.gameData.id
+        postData: {
+          id: Listener.gameData.id,
+          options: {}
         },
         answer: '',
         //加一个标志，判断进入答题页面有没有点击过,如果没有，取第一个选项
@@ -67,10 +68,10 @@
         //点击保存上一页问题,如果没有点击过，取第一项的答案，点击过，取接收到的项
         let name = Listener.gameData.questions[this.count - 1].qkey
         if (this.isClicked) {
-          this.options[name] = this.answer
+          this.postData.options[name] = this.answer
         } else {
           if (Listener.gameData.questions[this.count - 1].options.length > 0)
-            this.options[name] = Listener.gameData.questions[this.count - 1].options[0].okey
+            this.postData.options[name] = Listener.gameData.questions[this.count - 1].options[0].okey
         }
       },
       //点击切换问题选项
@@ -84,11 +85,11 @@
         if (this.count < this.$refs.ele.length) {
           //激活当前问题
           this.statusArr[this.count] = 1
+          //点击的时候重组问题答案
           this._constructOption()
-          console.log(this.options)
         } else {
           //提交并且跳转
-          this._submit(this.options)
+          this._submit(this.postData)
           this.$router.push({path: '/Result'})
         }
         //进入下一页的时候重置点击标志

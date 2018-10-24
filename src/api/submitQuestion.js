@@ -1,15 +1,18 @@
-import config from './config'
 import axios from 'axios'
+import config from './config'
 export default {
   getPoster(options) {
-    //把options携带的__ob__去掉
+    // 重新编辑options
     let newOptions = {}
-    for(let i in options){
-      newOptions[i] = options[i]
+    newOptions.id = options.id;
+    newOptions.options = {}
+    for(let i in options.options){
+      newOptions.options[i] = options.options[i]
     }
     return new Promise((resolve) => {
-      axios.post(`${config.host}/poster/display`, newOptions)
+      axios.post(`/api/poster/display`,newOptions)
         .then(res => {
+          console.log(res)
           resolve(res.data)
         })
         .catch(err => {

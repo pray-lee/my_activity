@@ -2,7 +2,7 @@
   <div class="music-wrapper">
     <div id="music" @click="changeStatus" :class="{active: isActive}"></div>
     <audio class="song" ref="audio">
-      <source src="../assets/mp3.mp3">
+      <source :src="src">
     </audio>
   </div>
 </template>
@@ -11,7 +11,7 @@
   import wx from 'weixin-js-sdk'
   export default {
     name: "music",
-    props: ['status'],
+    props: ['status', 'src'],
     computed: {
       isActive() {
         return this.status.type

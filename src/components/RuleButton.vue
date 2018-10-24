@@ -1,7 +1,7 @@
 <template>
   <div id="rule-area">
     <div id="rule-button" @click="handleOpen">规则</div>
-    <Rule v-show="displayObj.show"></Rule>
+    <Rule v-show="!!displayObj.show"></Rule>
   </div>
 </template>
 

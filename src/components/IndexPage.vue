@@ -2,7 +2,7 @@
   <Fade>
    <div id="index-page">
      <QuestionTitle v-if="gameData!=null" :nameType="gameData.nameType" :nameBg="gameData.nameBg" :nameZh="gameData.nameZh"></QuestionTitle>
-     <!--<RuleButton :ruleStatus="ruleStatus" class="rule-button"></RuleButton>-->
+     <RuleButton :displayObj="ruleStatus" class="rule-button"></RuleButton>
      <router-link to="/question" v-if="gameData!=null">
        <Button :word="gameData.startBtnName" class="page-button"></Button>
      </router-link>
@@ -18,6 +18,13 @@
   import Listener from '@/common/eventBus'
   export default {
     name: "IndexPage",
+    data() {
+      return {
+        ruleStatus: {
+          show: Listener.gameData.isShowRulesOnOpen
+        }
+      }
+    },
     components: {
       QuestionTitle,
       Button,
