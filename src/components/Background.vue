@@ -9,6 +9,7 @@
     props: ['url'],
     mounted() {
       this.$refs.background.style.background= `url(${this.url}) center center no-repeat`
+      this.$refs.background.style.backgroundSize = 'cover'
     }
   }
 </script>
