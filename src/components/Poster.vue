@@ -19,7 +19,6 @@
 <script>
   import html2canvas from 'html2canvas'
   import Listener from '@/common/eventBus'
-  import $ from 'jquery'
   import submitQuestion from '@/api/submitQuestion'
   export default {
     name: "poster",
@@ -27,19 +26,18 @@
       return {
         dataURL: '',
         result: {},
-        userHeadImg: '',
         titleWord: Listener.gameData.nameZh,
-        qrcodeUrl: Listener.qrcodeUrl
+        qrcodeUrl: Listener.qrcodeUrl,
       }
     },
+    props: ['userHeadImg'],
     mounted() {
+      console.log('%c poster mounted', 'font-weight:bold;color:#ff5252;font-size: 18px')
       //获取海报数据
       this._submit(Listener.postData)
     },
     methods: {
       async _submit(options) {
-        //获取微信用户信息
-        this._getUserInfo()
         //获取海报数据
         let result = await submitQuestion.getPoster(options)
         this.result = result.data;
@@ -48,7 +46,8 @@
       },
       _toImage() {
         html2canvas(document.getElementById('poster'),{
-          backgroundColor: null
+          backgroundColor: null,
+          logging: false,
         }).then((canvas) => {
           let dataURL = canvas.toDataURL("image/png");
           this.dataURL = dataURL;
@@ -56,28 +55,6 @@
             this.$refs.originImg.style.display="none"
         });
       },
-      //获取微信用户信息
-      _getUserInfo () {
-        let _this = this;
-        $.getJSON('https://socialmarketing.aicrmplus.com/wechart_h5/services/wx/me/', function(data){
-          let openId = data.openid;
-          let appId  = data.appid;
-          let userInfoRequest = 'http://socialmarketing.aicrmplus.com/MktWeChatInfo/getUserInfoByOpenid'
-          $.ajax({
-            type: 'POST',
-            url: userInfoRequest,
-            data: {
-              "appid": appId,
-              "openid": openId
-            },
-            success: function (data) {
-              console.log(data, 'userInfo')
-              if(data.code == 0)
-                _this.userHeadImg = data.headimgurl;
-            }
-          })
-        });
-      }
     }
   }
 </script>

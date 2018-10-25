@@ -1,7 +1,7 @@
 <template>
   <Fade>
     <div id="question-word">
-      <QuestionTitle :nameZh="title" nameType=0 nameBg=""></QuestionTitle>
+      <QuestionTitle :nameZh="title" nameType=0 nameBg="" class="question-title"></QuestionTitle>
       <div class="question-area">
         <template v-for="(item,index) in options.options">
           <question v-if="index==0" :checked="'checked'" :value="item.okey" :name="qkey" :content="item.ocontent"
@@ -41,12 +41,28 @@
 </script>
 
 <style scoped>
+  #question-word{
+    display:flex;
+    flex-direction: column;
+    height: 80vh;
+  }
   .question-area {
+    flex: 1 1 auto;
     display: flex;
     width: 7.893333rem /* 296/37.5 */;
-    height: 58vh;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
+  }
+  .question-title{
+    flex: 0 0 auto;
+    margin-right: 1rem;
+  }
+  .question-title >>> .title{
+    font-size: 0.64rem;
+    font-weight: bold;
+    width: 6.5rem;
+    line-height: 1rem;
+    text-align:left;
   }
 </style>

@@ -2,105 +2,18 @@
   <Fade>
     <div id="result">
       <div class="result-wrapper">
-        <Poster class="poster"></Poster>
+        <Poster :userHeadImg="userHeadImg" class="poster"></Poster>
         <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
         <Button word="重新测一次" class="button" @click.native="goBack"></Button>
         <Swiper></Swiper>
         <div id="invite">
-          <p>您已经邀请<span>3</span>名好友</p>
+          <p>您已经邀请<span>{{inviteUserHeadList.length}}</span>名好友</p>
         </div>
         <div class="invite-list-wrapper">
           <div id="invite-list" ref="wrapper">
             <div class="content">
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
-              </div>
-              <div class="img-wrapper">
-                <img src="../assets/images/close_icon.png" alt="">
+              <div class="img-wrapper" v-for="count in 30">
+                <img v-if="!!inviteUserHeadList.length" :src="inviteUserHeadList[count-1]" alt="">
               </div>
             </div>
           </div>
@@ -130,11 +43,14 @@
   import Swiper from '@/components/Swiper'
   import Fade from '@/components/Fade'
   import BScroll from 'better-scroll'
+  import $ from 'jquery'
 
   export default {
     name: "Result",
     data() {
       return {
+        inviteUserHeadList: [],
+        userHeadImg: '',
         scroll: null,
         showOrHide: {
           show: false
@@ -149,6 +65,9 @@
       Fade
     },
     mounted() {
+      //初始化获取相关信息
+      this.init()
+      //初始化邀请列表滚动条
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.wrapper)
       })
@@ -156,6 +75,81 @@
     methods: {
       goBack () {
         this.$router.push({path: '/question'})
+      },
+      async init() {
+        //获取微信用户信息
+        let userInfo = await this._getUserInfo()
+        // 获取邀请列表（获取openid列表）
+        let inviteList = await this._getOpenIdList(userInfo)
+        //获取邀请用户头像(获取openid对应的用户头像)
+        this._getUserHeadImgList(inviteList)
+      },
+      //获取微信用户信息
+      _getUserInfo () {
+        let _this = this;
+        return new Promise((resolve, reject) => {
+          $.getJSON('https://socialmarketing.aicrmplus.com/wechart_h5/services/wx/me/', function(data){
+            let openId = data.openid;
+            let appId  = data.appid;
+            let userInfoRequest = 'http://socialmarketing.aicrmplus.com/MktWeChatInfo/getUserInfoByOpenid'
+            $.ajax({
+              type: 'POST',
+              url: userInfoRequest,
+              data: {
+                "appid": appId,
+                "openid": openId
+              },
+              success: function (data) {
+                if(data.code == 0)
+                  _this.userHeadImg = data.headimgurl;
+              }
+            })
+            resolve(data)
+          });
+        })
+      },
+      _getOpenIdList(userInfo) {
+        console.log('%c getOpenidList---', 'font-weight:bold;color:#ff5252;font-size: 18px')
+        return new Promise((resolve, reject) => {
+          $.ajax({
+            type: 'POST',
+            url: 'https://socialmarketing.aicrmplus.com/wechart_h5/services/getPullMembers',
+            data: {
+              appId: userInfo.appip,
+              openId: userInfo.openid,
+              sourceId: 'actid',
+              sourceType: 'ACTION'
+            },
+            success: function (data) {
+              let tmpObj = {}
+              tmpObj.appId = userInfo.appid
+              tmpObj.data = data
+              resolve(tmpObj)
+            }
+          })
+        })
+      },
+      _getUserHeadImgList(list) {
+        console.log('%c getUserHeadImgList---', 'font-weight:bold;color:#ff5252;font-size: 18px')
+        list.data.forEach(item => {
+          this._getUserHeadImg(item, list.appId)
+        })
+      },
+      _getUserHeadImg(item, appId) {
+        console.log('&c getUserHeadimg---', 'font-weight:bold;color:#ff5252;font-size: 18px')
+        let _this = this;
+        $.ajax({
+          type: 'POST',
+          url: 'https://socialmarketing.aicrmplus.com/wechart_h5/services/getWxUserInfo',
+          data: {
+            openid: item,
+            appid: appId
+          },
+          success: function (result) {
+            if(result.success)
+              _this.inviteUserHeadList.push(JSON.parse(result.dataObject.user).headimgurl)
+          }
+        })
       }
     }
   }

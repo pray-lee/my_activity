@@ -1,7 +1,7 @@
 <template>
   <Fade>
     <div id="question_img">
-      <QuestionTitle :nameZh="title" nameType=0 nameBg=""></QuestionTitle>
+      <QuestionTitle :nameZh="title" nameType=0 nameBg="" class="question-title"></QuestionTitle>
       <div id="question_img_items_container">
         <div class="question_img_item" v-for="(item, index) in options.options">
           <img :src="item.oimg" alt="">
@@ -43,14 +43,29 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  #question_img{
+    display: flex;
+    flex-direction: column;
+    height: 80vh
+  }
   #question_img_items_container {
     display: flex;
+    flex:1 1 auto;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 58vh;
   }
-
+  .question-title{
+    flex: 0 0 auto;
+    margin-right: 1.20rem;
+  }
+  .question-title >>> .title{
+    font-size: 0.64rem;
+    font-weight: bold;
+    width: 6.5rem;
+    line-height: 1rem;
+    text-align:left;
+  }
   .question_img_item {
     margin: 0 .3rem;
     flex: 0 0 auto;

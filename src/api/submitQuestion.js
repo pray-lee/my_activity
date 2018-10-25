@@ -10,7 +10,7 @@ export default {
       newOptions.options[i] = options.options[i]
     }
     return new Promise((resolve) => {
-      axios.post(`${config.host}/poster/display`,newOptions)
+      axios.post(`/api/poster/display`,newOptions)
         .then(res => {
           console.log(res)
           resolve(res.data)
