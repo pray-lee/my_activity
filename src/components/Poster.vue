@@ -1,19 +1,14 @@
 <template>
-  <div id="poster" ref="imageWrapper">
+  <div id="poster">
     <img v-if="result&&result.bgImg" :src="result.bgImg" alt="" class="img-bg" ref="originImg">
     <img v-if="!!dataURL" :src="dataURL" alt="" id="canvas">
     <div class="title clearfix">
       <div class="head-img">
         <img v-if="!!userHeadImg" :src="userHeadImg" alt="">
       </div>
-      <div class="title-word">
-        {{titleWord}}
-      </div>
+      <div class="title-word" v-html="titleWord"></div>
     </div>
-    <div class="poster-word">
-      过去的都将留在过去，艺术是鲜活的生命，生长向未来。
-      我要的爱情是明亮鲜活的，像春天一样。
-      让在低沉的环境中等待，就如同等死一样难受。
+    <div class="poster-word" v-if="result&&result.pdesc" v-html="result.pdesc">
     </div>
     <div class="qrcode">
       <img v-if="!!qrcodeUrl" :src="qrcodeUrl" alt="">
@@ -25,6 +20,7 @@
   import html2canvas from 'html2canvas'
   import Listener from '@/common/eventBus'
   import $ from 'jquery'
+  import submitQuestion from '@/api/submitQuestion'
   export default {
     name: "poster",
     data() {
@@ -37,17 +33,21 @@
       }
     },
     mounted() {
-      this.result = Listener.result;
-      //截图
-      this.$nextTick(() => {
-        this._toImage()
-      })
-      //获取微信用户信息
-      this._getUserInfo()
+      //获取海报数据
+      this._submit(Listener.postData)
     },
     methods: {
+      async _submit(options) {
+        //获取微信用户信息
+        this._getUserInfo()
+        //获取海报数据
+        let result = await submitQuestion.getPoster(options)
+        this.result = result.data;
+        //截图
+        this._toImage()
+      },
       _toImage() {
-        html2canvas(this.$refs.imageWrapper,{
+        html2canvas(document.getElementById('poster'),{
           backgroundColor: null
         }).then((canvas) => {
           let dataURL = canvas.toDataURL("image/png");

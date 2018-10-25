@@ -138,7 +138,7 @@
         scroll: null,
         showOrHide: {
           show: false
-        }
+        },
       }
     },
     components: {

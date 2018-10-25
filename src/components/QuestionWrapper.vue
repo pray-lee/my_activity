@@ -23,7 +23,6 @@
   import Listener from "@/common/eventBus";
   import Button from "@/components/Button";
   import Fade from "@/components/Fade";
-  import submitQuestion from '@/api/submitQuestion'
 
   export default {
     name: "QuestionWrapper",
@@ -89,7 +88,7 @@
           this.statusArr[this.count] = 1
         } else {
           //提交并且跳转
-          this._submit(this.postData)
+          Listener.postData = this.postData;
           this.$router.push({path: '/Result'})
         }
         //进入下一页的时候重置点击标志
@@ -99,10 +98,6 @@
         //当监听到receiveValue时，说明用户一定点击过当前页面的选项，然后改变标志状态
         this._changeClickState()
         this.answer = val
-      },
-      async _submit(options) {
-        let result = await submitQuestion.getPoster(options)
-        Listener.result = result.data;
       }
     }
   }
