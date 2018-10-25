@@ -25,6 +25,7 @@
     },
     created() {
       this._getGameData()
+      Listener.qrcodeUrl = this._getQueryString('img')
     },
     components: {
       QuestionWrapper,
@@ -44,8 +45,18 @@
       },
       _setDocumentTitle(gameData) {
         document.getElementsByTagName('title')[0].innerHTML = gameData.title
+      },
+      //获取地址里的二维码地址
+      _getQueryString(name){
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", 'i'); // 匹配目标参数
+        let result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        if (result != null) {
+          return decodeURIComponent(result[2]);
+        } else {
+          return null;
+        }
       }
-    }
+    },
   }
 </script>
 

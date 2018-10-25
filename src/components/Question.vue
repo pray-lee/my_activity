@@ -1,7 +1,7 @@
 <template>
   <div id="question">
     <div class="question-wrapper">
-      <p>{{content}}}</p>
+      <p>{{content}}</p>
       <Checkbox :value="value" class="check-item" :name="name" :checked="checked" @change="receiveValue"></Checkbox>
     </div>
   </div>

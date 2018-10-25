@@ -13,13 +13,15 @@
     components: {
       Rule
     },
+    mounted() {
+      Listener.$on('close', () => {
+        this.displayObj.show = false
+      })
+    },
     props: ['displayObj'],
     methods: {
       handleOpen () {
         this.displayObj.show = true
-        Listener.$on('close', () => {
-          this.displayObj.show = false
-        })
       }
     }
   }

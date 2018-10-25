@@ -39,6 +39,7 @@
         this.audioStatus()
       },
       audioStatus() {
+        this.$refs.audio.loop = 'loop'
         if(this.status.type){
           this.$refs.audio.play()
         }else{

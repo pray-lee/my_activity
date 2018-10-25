@@ -22,13 +22,16 @@
 #change-question{
   position:absolute;
   z-index:99999;
-  bottom: 4rem;
+  bottom: 3.4rem;
   font-size: 0.37rem;
   color:#999999;
   left: 50%;
-  width: 1.65rem;
+  width: 1.75rem;
   height: 0.53rem;
-  line-height: .53rem;
-  margin-left:-.825rem
+  line-height: .6rem;
+  margin-left:-.825rem;
+  padding-right: 0.63rem;
+  background:url(../assets/images/rotate.png) right center no-repeat;
+  background-size: 0.43rem .43rem;
 }
 </style>

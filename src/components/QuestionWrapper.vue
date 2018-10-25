@@ -82,11 +82,11 @@
         this.$refs.ele.forEach(() => {
           this.statusArr.push(0)
         })
+        //点击的时候重组问题答案
+        this._constructOption()
         if (this.count < this.$refs.ele.length) {
           //激活当前问题
           this.statusArr[this.count] = 1
-          //点击的时候重组问题答案
-          this._constructOption()
         } else {
           //提交并且跳转
           this._submit(this.postData)
@@ -102,7 +102,7 @@
       },
       async _submit(options) {
         let result = await submitQuestion.getPoster(options)
-        console.log(result)
+        Listener.result = result.data;
       }
     }
   }

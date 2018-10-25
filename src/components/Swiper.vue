@@ -2,7 +2,20 @@
   <div id="swiper-wrapper">
     <swiper :options="swiperOption" ref="mySwiper" class="my-swiper">
       <swiper-slide>
-        <div id="tag">市价：<span>600</span></div>
+        <!--<div id="tag">市价：<span>600</span></div>-->
+        <img src="../assets/images/1.jpg" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <!--<div id="tag">市价：<span>600</span></div>-->
+        <img src="../assets/images/2.jpg" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <!--<div id="tag">市价：<span>600</span></div>-->
+        <img src="../assets/images/3.jpg" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <!--<div id="tag">市价：<span>600</span></div>-->
+        <img src="../assets/images/4.jpg" alt="">
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
@@ -64,6 +77,10 @@
   background: url(../assets/images/tag.png) center center no-repeat;
   background-size: 2.45rem .64rem;
   padding:0 .2rem;
+}
+#swiper-wrapper img{
+  width: 9.15rem;
+  height: 5.15rem;
 }
 .swiper-container{
   width: 100%;

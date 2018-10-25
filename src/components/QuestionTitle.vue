@@ -1,6 +1,6 @@
 <template>
   <div id="question-title">
-    <div class="title" v-if="nameType==0">{{nameZh}}</div>
+    <div class="title" v-if="nameType==0" v-html="nameZh"></div>
     <div class="title-img" v-else>
       <img :src="nameBg" alt="">
     </div>
