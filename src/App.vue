@@ -26,6 +26,7 @@
     created() {
       this._getGameData()
       Listener.qrcodeUrl = this._getQueryString('img')
+      Listner.actid = this._getQueryString('actid')
     },
     components: {
       QuestionWrapper,

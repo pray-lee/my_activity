@@ -63,7 +63,7 @@
     font-size: 0.64rem;
     font-weight: bold;
     width: 6.5rem;
-    line-height: 1rem;
+    line-height: 0.8rem;
     text-align:left;
   }
   .question_img_item {

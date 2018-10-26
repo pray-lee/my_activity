@@ -43,6 +43,7 @@
   import Swiper from '@/components/Swiper'
   import Fade from '@/components/Fade'
   import BScroll from 'better-scroll'
+  import Listener from '@/common/eventBus'
   import $ from 'jquery'
 
   export default {
@@ -117,7 +118,7 @@
             data: {
               appId: userInfo.appip,
               openId: userInfo.openid,
-              sourceId: 'actid',
+              sourceId: Listener.actid,
               sourceType: 'ACTION'
             },
             success: function (data) {
