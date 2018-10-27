@@ -1,7 +1,9 @@
 <template>
   <div id="poster">
     <img v-if="result&&result.bgImg" :src="result.bgImg" alt="" class="img-bg" ref="originImg">
-    <img v-if="!!dataURL" :src="dataURL" alt="" id="canvas">
+    <div id="canvas-wrapper" v-if="!!dataURL">
+      <img :src="dataURL" alt="" id="canvas">
+    </div>
     <div class="title clearfix">
       <div class="head-img">
         <img v-if="!!userHeadImg" :src="userHeadImg" alt="">
@@ -46,8 +48,7 @@
       },
       _toImage() {
         html2canvas(document.getElementById('poster'),{
-          backgroundColor: null,
-          logging: false,
+          useCORS: true
         }).then((canvas) => {
           let dataURL = canvas.toDataURL("image/png");
           this.dataURL = dataURL;
@@ -62,14 +63,23 @@
 <style scoped>
 #poster #canvas{
     position:absolute;
-    width:10.00rem;
-    height: 17.77rem;
+    width: 6.40rem;
+    height: 11.36rem;
     z-index:999;
     top:0;
     left:0;
     bottom:0;
     right:0;
     margin:auto;
+  }
+  #canvas-wrapper{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin: auto;
+    background:#e7e7e6
   }
   .clearfix:after {
     visibility: hidden;
@@ -81,13 +91,16 @@
   }
 
   #poster {
-    width: 10rem;
-    height: 17.77rem;
+    width: 6.40rem;
+    height: 11.36rem;
     position:relative;
     z-index:1;
-    padding: 0 1.09rem;
-    padding-top: 0.37rem;
-
+    top:0;
+    left:0;
+    bottom:0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 1.25rem;
   }
   #poster .img-bg{
     position:absolute;
@@ -97,12 +110,14 @@
     right:0;
     z-index: -1;
     margin: auto;
-    width: 10.00rem;
-    height: 17.77rem;
+    width: 6.4rem;
+    height: 11.36rem;
     background:#ccc
   }
   .title {
     height: 1.15rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.13rem;
     margin-bottom: 0.24rem;
   }
 
@@ -111,30 +126,33 @@
   }
 
   .head-img {
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 0.77rem;
+    height: .77rem;
     border-radius: 50%;
-    background: #ccc
+    background: #ccc;
+    margin-left: 0.71rem;
   }
 
   .title-word {
-    font-size: 0.48rem;
+    font-size: 0.3rem;
     font-weight: 600;
     color: #494949;
-    line-height: 1.15rem;
-    margin-left: 0.32rem;
+    line-height: .77rem;
+    margin-left: 0.20rem;
   }
   #poster .poster-word{
+    transform-origin: left;
+    transform: scale(.6);
     position: absolute;
     z-index:1;
-    top:14.24rem;
-    left: 1.37rem;
-    width: 7.76rem;
-    height: 1.25rem;
+    top:8.8rem;
+    left: 1rem;
+    width: 7.81rem;
+    height: 1.59rem;
     margin: 0 auto;
     text-align:center;
     color:#494949;
-    font-size: 0.28rem;
+    font-size: 0.24rem;
     word-break: break-all;
   }
   .qrcode{

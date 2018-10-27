@@ -1,7 +1,7 @@
 <template>
   <div class="music-wrapper">
     <div id="music" @click="changeStatus" :class="{active: isActive}"></div>
-    <audio class="song" ref="audio">
+    <audio class="song" ref="audio" v-if="status!=null">
       <source :src="src">
     </audio>
   </div>

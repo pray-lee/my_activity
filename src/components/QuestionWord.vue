@@ -59,7 +59,7 @@
     margin-right: 1rem;
   }
   .question-title >>> .title{
-    font-size: 0.64rem;
+    font-size: 0.5rem;
     font-weight: bold;
     width: 6.5rem;
     line-height: 0.8rem;

@@ -1,9 +1,9 @@
 import axios from 'axios'
 import config from './config'
 export default {
-  getData(qkey) {
+  getData(qkey, page) {
     return new Promise((resolve) => {
-      axios.get(`${config.host}/question/change?qKey=${qkey}`)
+      axios.get(`${config.host}/question/change?qKey=${qkey}`, {params: {page: page}})
         .then(res => {
           resolve(res.data)
         })

@@ -3,7 +3,7 @@
     <div id="question_img">
       <QuestionTitle :nameZh="title" nameType=0 nameBg="" class="question-title"></QuestionTitle>
       <div id="question_img_items_container">
-        <div class="question_img_item" v-for="(item, index) in options.options">
+        <div class="question_img_item" v-for="(item, index) in options.options" :key="index">
           <img :src="item.oimg" alt="">
           <Checkbox v-if="index==0" :checked="'checked'" :value="item.okey" :name="qkey"
                     @change="receiveValue"></Checkbox>
@@ -60,7 +60,7 @@
     margin-right: 1.20rem;
   }
   .question-title >>> .title{
-    font-size: 0.64rem;
+    font-size: 0.53rem;
     font-weight: bold;
     width: 6.5rem;
     line-height: 0.8rem;

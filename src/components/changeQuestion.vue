@@ -9,9 +9,15 @@
   export default {
     name: "changeQuestion",
     props: ['qkey'],
+    data() {
+      return {
+        page: 0
+      }
+    },
     methods: {
       async changeItem() {
-        let questions = await changeQuestion.getData(this.qkey)
+        let questions = await changeQuestion.getData(this.qkey, this.page)
+        this.page++;
         this.$emit('changeItem', questions.data)
       }
     }
@@ -26,7 +32,7 @@
   font-size: 0.37rem;
   color:#999999;
   left: 50%;
-  width: 1.75rem;
+  width: 2rem;
   height: 0.53rem;
   line-height: .6rem;
   margin-left:-.825rem;

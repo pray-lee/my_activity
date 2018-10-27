@@ -2,6 +2,7 @@
   <div id="app" v-if="gameData!=null">
     <Music :status="musicStatus" :src="gameData.bgMusic"></Music>
     <Background :url="gameData.bgImg"></Background>
+    <Begin></Begin>
     <router-view></router-view>
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
   import Music from '@/components/music'
   import Background from '@/components/Background'
+  import Begin from '@/components/Begin'
   import QuestionWrapper from "@/components/QuestionWrapper";
   import startGame from '@/api/startGame'
   import Listener from '@/common/eventBus'
@@ -26,12 +28,13 @@
     created() {
       this._getGameData()
       Listener.qrcodeUrl = this._getQueryString('img')
-      Listner.actid = this._getQueryString('actid')
+      Listener.actid = this._getQueryString('actid')
     },
     components: {
       QuestionWrapper,
       Music,
-      Background
+      Background,
+      Begin
     },
     methods: {
       async _getGameData() {

@@ -2,6 +2,9 @@
   <Fade>
     <div id="result">
       <div class="result-wrapper">
+        <div class="poster-notice">
+          <p>长按保存海报，让好友们解锁平行世界，解锁你的专属设计师珠宝</p>
+        </div>
         <Poster :userHeadImg="userHeadImg" class="poster"></Poster>
         <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
         <Button word="重新测一次" class="button" @click.native="goBack"></Button>
@@ -12,7 +15,7 @@
         <div class="invite-list-wrapper">
           <div id="invite-list" ref="wrapper">
             <div class="content">
-              <div class="img-wrapper" v-for="count in 30">
+              <div class="img-wrapper" v-for="count in 30" :key="count">
                 <img v-if="!!inviteUserHeadList.length" :src="inviteUserHeadList[count-1]" alt="">
               </div>
             </div>
@@ -20,11 +23,14 @@
         </div>
         <div class="rule">
           <div class="title">规则说明</div>
-          <div class="title-second">秀出你的超级IP给好友吧</div>
+          <div class="title-second">秀出你的[艺术世界]给好友吧</div>
           <div class="rule-content">
             <p>6名好友关注即可获得<span>300</span>元代金券</p>
+            <p>任意产品使用</p>
             <p>6名好友关注即可获得<span>600</span>元代金券</p>
-            <p>6名好友关注即可获得<span>3000</span>元代金券</p>
+            <p>对应产品使用</p>
+            <p>6名好友关注即可获得<span>2000</span>元代金券</p>
+            <p>限定产品使用</p>
           </div>
           <div class="notice">
             <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
@@ -90,21 +96,7 @@
         let _this = this;
         return new Promise((resolve, reject) => {
           $.getJSON('https://socialmarketing.aicrmplus.com/wechart_h5/services/wx/me/', function(data){
-            let openId = data.openid;
-            let appId  = data.appid;
-            let userInfoRequest = 'http://socialmarketing.aicrmplus.com/MktWeChatInfo/getUserInfoByOpenid'
-            $.ajax({
-              type: 'POST',
-              url: userInfoRequest,
-              data: {
-                "appid": appId,
-                "openid": openId
-              },
-              success: function (data) {
-                if(data.code == 0)
-                  _this.userHeadImg = data.headimgurl;
-              }
-            })
+            _this.userHeadImg = data.headimgurl;
             resolve(data)
           });
         })
@@ -116,7 +108,7 @@
             type: 'POST',
             url: 'https://socialmarketing.aicrmplus.com/wechart_h5/services/getPullMembers',
             data: {
-              appId: userInfo.appip,
+              appId: userInfo.appid,
               openId: userInfo.openid,
               sourceId: Listener.actid,
               sourceType: 'ACTION'
@@ -160,10 +152,26 @@
   #result .result-wrapper{
     width:100%;
     height:100%;
-    background: #fff;
+    background: #e7e7e6;
     position:relative;
+    background:#e7e7e6;
   }
-
+  .poster-notice{
+    width: 10rem;
+    height: 1.33rem;
+    line-height: 1.33rem;
+    font-size: 0.24rem;
+    color:#333;
+    text-align:left;
+    padding-left: 0.69rem;
+    font-weight: bold
+  }
+  .poster-notice p{
+    display:inline-block;
+    transform-origin: left;
+    transform: scale(.8);
+    white-space: nowrap;
+  }
   #result .rule-position {
     top: 10.61rem;
     right: 0.61rem !important;
@@ -179,7 +187,7 @@
   }
 
   #invite {
-    width: 3.31rem;
+    width: 5.31rem;
     height: 0.77rem;
     margin: 0 auto;
     margin-top: 0.64rem;
@@ -225,7 +233,7 @@
     border-radius: 50%;
     box-sizing: content-box;
     margin: 0.21rem;
-    background: #ccc;
+    background: #d8d8d8;
     box-sizing: border-box;
     border: 0.03rem solid transparent;
   }
