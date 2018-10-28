@@ -3,12 +3,14 @@
     <div id="result">
       <div class="result-wrapper">
         <div class="poster-notice">
-          <p>长按保存海报，让好友们解锁平行世界，解锁你的专属设计师珠宝</p>
         </div>
-        <Poster :userHeadImg="userHeadImg" class="poster"></Poster>
+        <Poster v-if="!!userHeadImg" :userHeadImg="userHeadImg" class="poster"></Poster>
         <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
         <Button word="重新测一次" class="button" @click.native="goBack"></Button>
         <Swiper></Swiper>
+        <div id="introduce">
+          <p>邀请好友解锁艺术世界，免费get精美珠宝</p>
+        </div>
         <div id="invite">
           <p>您已经邀请<span>{{inviteUserHeadList.length}}</span>名好友</p>
         </div>
@@ -23,14 +25,15 @@
         </div>
         <div class="rule">
           <div class="title">规则说明</div>
-          <div class="title-second">秀出你的[艺术世界]给好友吧</div>
+          <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
+          <div class="title-second">长按保存图片并分享好友，邀请好友关注，免费get珠宝。</div>
           <div class="rule-content">
-            <p>6名好友关注即可获得<span>300</span>元代金券</p>
-            <p>任意产品使用</p>
-            <p>6名好友关注即可获得<span>600</span>元代金券</p>
-            <p>对应产品使用</p>
-            <p>6名好友关注即可获得<span>2000</span>元代金券</p>
-            <p>限定产品使用</p>
+            <p>邀请6名好友关注即可获得<span>300</span>元代金券</p>
+            <!--<p>任意产品使用</p>-->
+            <p>邀请9名好友关注即可获得<span>600</span>元代金券</p>
+            <!--<p>对应产品使用</p>-->
+            <p>邀请30名好友关注即可获得<span>2000</span>元代金券</p>
+            <!--<p>限定产品使用</p>-->
           </div>
           <div class="notice">
             <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
@@ -84,6 +87,7 @@
         this.$router.push({path: '/question'})
       },
       async init() {
+        this.userHeadImg='true'
         //获取微信用户信息
         let userInfo = await this._getUserInfo()
         // 获取邀请列表（获取openid列表）
@@ -116,7 +120,7 @@
             success: function (data) {
               let tmpObj = {}
               tmpObj.appId = userInfo.appid
-              tmpObj.data = data
+              tmpObj.data = data.dataObject
               resolve(tmpObj)
             }
           })
@@ -149,6 +153,9 @@
 </script>
 
 <style scoped>
+  #result{
+    width: 10rem;
+  }
   #result .result-wrapper{
     width:100%;
     height:100%;
@@ -157,20 +164,15 @@
     background:#e7e7e6;
   }
   .poster-notice{
-    width: 10rem;
+    width: 9rem;
     height: 1.33rem;
     line-height: 1.33rem;
     font-size: 0.24rem;
     color:#333;
-    text-align:left;
-    padding-left: 0.69rem;
-    font-weight: bold
-  }
-  .poster-notice p{
-    display:inline-block;
-    transform-origin: left;
-    transform: scale(.8);
-    white-space: nowrap;
+    margin-left: 0.69rem;
+    font-weight: bold;
+    background: url('../assets/images/notice.png') left center no-repeat;
+    background-size: 6.35rem .27rem;
   }
   #result .rule-position {
     top: 10.61rem;
@@ -190,10 +192,18 @@
     width: 5.31rem;
     height: 0.77rem;
     margin: 0 auto;
-    margin-top: 0.64rem;
     margin-bottom: 0.21rem;
   }
-
+  #introduce{
+    height: .77rem;
+    margin-top: .64rem;
+  }
+  #introduce p{
+    font-weight: bold;
+    font-size: .37rem;
+    color:#333;
+    line-height: .77rem
+  }
   #invite p {
     font-size: 0.37rem;
     color: #222;
@@ -236,12 +246,13 @@
     background: #d8d8d8;
     box-sizing: border-box;
     border: 0.03rem solid transparent;
+    overflow:hidden;
   }
 
   #invite-list img {
+    display:block;
     width: 100%;
     height: 100%;
-    vertical-align: top;
   }
 
   .rule {
@@ -261,8 +272,9 @@
 
   .title-second {
     width: auto;
-    height: 24px;
+    /*height: 24px;*/
     margin-bottom: 0.64rem;
+    margin-top: 0.64rem;
     text-align: left;
     line-height: 24px;
     font-size: 0.43rem;

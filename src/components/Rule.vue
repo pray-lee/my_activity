@@ -4,14 +4,15 @@
       <div id="rule">
         <i class="close" @click="close"></i>
         <div class="title">规则说明</div>
-        <div class="title-second">秀出你的[艺术世界]给好友吧</div>
+        <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
+        <div class="title-second">长按保存图片并分享好友，邀请好友关注，免费get珠宝。</div>
         <div class="rule-content">
-          <p>6名好友关注即可获得<span>300</span>元代金券</p>
-          <p class="small">任意产品使用</p>
-          <p>6名好友关注即可获得<span>600</span>元代金券</p>
-          <p class="small">对应产品使用</p>
-          <p>6名好友关注即可获得<span>2000</span>元代金券</p>
-          <p class="small">限定产品使用</p>
+          <p>邀请6名好友关注即可获得<span>300</span>元代金券</p>
+          <!--<p class="small">任意产品使用</p>-->
+          <p>邀请9名好友关注即可获得<span>600</span>元代金券</p>
+          <!--<p class="small">对应产品使用</p>-->
+          <p>邀请30名好友关注即可获得<span>2000</span>元代金券</p>
+          <!--<p class="small">限定产品使用</p>-->
         </div>
         <div class="notice">
           <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
@@ -56,7 +57,7 @@
   right: 0;
   background:#fff;
   width: 7.65rem;
-  height: 11.5rem;
+  height: 10.5rem;
   margin: auto
 }
 .close{
@@ -78,13 +79,15 @@
 }
 .title-second{
   width: auto;
-  height: 24px;
+  /*height: 24px;*/
+  margin-top: 0.85rem;
   margin-bottom: 0.85rem;
   text-align:left;
   line-height: 24px;
   font-size: 0.43rem;
   color:#222222;
   padding-left: .64rem;
+  padding-right: .64rem;
 }
 .rule-content{
   padding-bottom: 1.20rem;

@@ -1,6 +1,6 @@
 <template>
   <div class="music-wrapper">
-    <div id="music" @click="changeStatus" :class="{active: isActive}"></div>
+    <div id="music" @click="changeStatus" :class="{active: isActive,musicStart: isActive}" ref="musicIcon"></div>
     <audio class="song" ref="audio" v-if="status!=null">
       <source :src="src">
     </audio>
@@ -62,7 +62,9 @@
     background: url(../assets/images/closemusic_icon.png) center center no-repeat;
     background-size: cover;
   }
-
+  .musicStart{
+    animation: 3s linear infinite rotate;
+  }
   #music.active {
     width: 1.333333rem;
     height: 1.333333rem;
@@ -75,5 +77,13 @@
     position:absolute;
     z-index:999999;
     background:#ff5252
+  }
+  @keyframes rotate {
+    from{
+      transform: rotate(0deg)
+    }
+    to{
+      transform: rotate(360deg)
+    }
   }
 </style>

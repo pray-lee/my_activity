@@ -2,7 +2,7 @@
   <div id="poster">
     <img v-if="result&&result.bgImg" :src="result.bgImg" alt="" class="img-bg" ref="originImg">
     <div id="canvas-wrapper" v-if="!!dataURL">
-      <img :src="dataURL" alt="" id="canvas">
+      <img :src="dataURL" alt="" id="canvas" crossorigin="anonymous">
     </div>
     <div class="title clearfix">
       <div class="head-img">
@@ -42,18 +42,18 @@
       async _submit(options) {
         //获取海报数据
         let result = await submitQuestion.getPoster(options)
-        this.result = result.data;
+        this.result = await result.data;
         //截图
         this._toImage()
       },
       _toImage() {
         html2canvas(document.getElementById('poster'),{
-          useCORS: true
+          background: null,
         }).then((canvas) => {
           let dataURL = canvas.toDataURL("image/png");
           this.dataURL = dataURL;
-          if(this.$refs.originImg)
-            this.$refs.originImg.style.display="none"
+          // if(this.$refs.originImg)
+          //   this.$refs.originImg.style.display="none"
         });
       },
     }
@@ -100,7 +100,7 @@
     bottom:0;
     right: 0;
     margin: auto;
-    margin-bottom: 1.25rem;
+    margin-bottom: .8rem;
   }
   #poster .img-bg{
     position:absolute;
@@ -131,8 +131,12 @@
     border-radius: 50%;
     background: #ccc;
     margin-left: 0.71rem;
+    overflow: hidden
   }
-
+  .head-img img{
+    width:100%;
+    height:100%;
+  }
   .title-word {
     font-size: 0.3rem;
     font-weight: 600;
@@ -158,10 +162,10 @@
   .qrcode{
     position:absolute;
     z-index:2;
-    top: 15.95rem;
-    right: 1.15rem;
-    width: 1.47rem;
-    height: 1.47rem;
+    top: 10.09rem;
+    right: 0.57rem;
+    width: 0.96rem;
+    height: 0.96rem;
   }
   .qrcode img{
     width: 100%;
