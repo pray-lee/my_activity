@@ -3,7 +3,7 @@ import config from './config'
 export default {
   getData() {
     return new Promise((resolve) => {
-      axios.get(`/api/game/start`)
+      axios.get(`${config.host}/game/start`)
         .then(res => {
           if (res.code != 0) {
             resolve(res.data)
