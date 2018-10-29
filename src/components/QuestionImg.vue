@@ -46,7 +46,7 @@
   #question_img{
     display: flex;
     flex-direction: column;
-    height: 80vh
+    height: 75vh
   }
   #question_img_items_container {
     display: flex;

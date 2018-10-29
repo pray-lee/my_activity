@@ -1,8 +1,8 @@
 <template>
   <div id="poster">
     <img v-if="result&&result.bgImg" :src="result.bgImg" alt="" class="img-bg" ref="originImg">
-    <div id="canvas-wrapper">
-      <img :src="dataURL" alt="" id="canvas">
+    <div id="canvas-wrapper" v-if="!!dataURL">
+      <img :src="dataURL" alt="" id="canvas" crossorigin="anonymous">
     </div>
     <div class="title clearfix">
       <div class="head-img">
@@ -47,10 +47,8 @@
         this._toImage()
       },
       _toImage() {
-        document.getElementById('canvas').crossOrigin = 'Anonymous'
         html2canvas(document.getElementById('poster'),{
           background: null,
-          allowTaint: false
         }).then((canvas) => {
           let dataURL = canvas.toDataURL("image/png");
           this.dataURL = dataURL;
@@ -58,6 +56,9 @@
             this.$refs.originImg.style.display="none"
         });
       },
+      toBase64() {
+
+      }
     }
   }
 </script>
@@ -158,7 +159,7 @@
     margin: 0 auto;
     text-align:center;
     color:#494949;
-    font-size: 0.24rem;
+    font-size: 0.10rem;
     word-break: break-all;
   }
   .qrcode{
