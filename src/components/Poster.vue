@@ -1,19 +1,19 @@
 <template>
   <div id="poster">
-    <img ref="base64Img">
+    <img ref="base64ImgPoster" :src="result.bgImg" v-if="!!result.bgImg" class="img-bg">
     <div id="canvas-wrapper" v-if="!!dataURL">
       <img :src="dataURL" alt="" id="canvas">
     </div>
     <div class="title clearfix">
       <div class="head-img">
-        <img v-if="!!userHeadImg" :src="userHeadImg" alt="">
+        <img v-if="!!userHeadImg" :src="userHeadImg" alt="" ref="userHeadImg">
       </div>
       <div class="title-word" v-html="titleWord"></div>
     </div>
     <div class="poster-word" v-if="result&&result.pdesc" v-html="result.pdesc">
     </div>
     <div class="qrcode">
-      <img v-if="!!qrcodeUrl" :src="qrcodeUrl" alt="">
+      <img v-if="!!qrcodeUrl" :src="qrcodeUrl" alt="" ref="qrcodeUrl">
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@
 import html2canvas from 'html2canvas'
 import Listener from '@/common/eventBus'
 import submitQuestion from '@/api/submitQuestion'
+import QRCode from 'qrcode'
 export default {
   name: "poster",
   data() {
@@ -37,29 +38,32 @@ export default {
     console.log('%c poster mounted', 'font-weight:bold;color:#ff5252;font-size: 18px')
     //获取海报数据
     this._submit(Listener.postData)
+    //把所有需要转码的图片转成base64
   },
   methods: {
     async _submit(options) {
       //获取海报数据
       let result = await submitQuestion.getPoster(options)
-      this.result = await result.data;
-      // 转base64
-      this._initPosterImg(result.data.bgImg)
-      //截图
-      //this._toImage()
+      this.result = result.data;
+      //转用户头像和二维码
+      this._renderImg()
     },
-    _initPosterImg (src) {
-      console.log(src)
-      src="http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLBHE2R79RQfsNu6vCekrAETiaw7uo4NZCerCjzorDgwJ6lHn84Alg8Xicqu9fJhq2iaZUx7sUE0arhug/132"
-      var image = new Image();
-      image.setAttribute('crossOrigin', 'anonymous');
-      image.src = src
-      image.onload = () => {
-        console.log(11111111)
-        console.log(this.$refs.base64Img)
-        var base64 = this._getBase64Image(image);
-        this.$refs.base64Img.src = base64
-      }
+    async _renderImg() {
+      await this._initPosterImg(this.userHeadImg, this.$refs.userHeadImg)
+      //截图
+      this._toImage()
+    },
+    _initPosterImg (src, ele) {
+      return new Promise((resolve, reject) => {
+        var image = new Image();
+        image.setAttribute('crossOrigin', 'anonymous');
+        image.src = src
+        image.onload = () => {
+          var base64 = this._getBase64Image(image);
+          ele.src = base64
+          resolve('success')
+        }
+      })
     },
     _getBase64Image(img) {
       var canvas = document.createElement("canvas");
@@ -154,11 +158,18 @@ export default {
   border-radius: 50%;
   background: #ccc;
   margin-left: 0.71rem;
-  overflow: hidden
+  overflow: hidden;
+  position:relative;
 }
 .head-img img{
   width:100%;
   height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right:0;
+  margin: auto
 }
 .title-word {
   font-size: 0.3rem;

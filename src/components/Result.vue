@@ -87,7 +87,6 @@
         this.$router.push({path: '/question'})
       },
       async init() {
-        this.userHeadImg='true'
         //获取微信用户信息
         let userInfo = await this._getUserInfo()
         // 获取邀请列表（获取openid列表）
