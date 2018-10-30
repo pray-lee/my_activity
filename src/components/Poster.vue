@@ -191,8 +191,8 @@ export default {
 .qrcode{
   position:absolute;
   z-index:2;
-  top: 10.09rem;
-  right: 0.57rem;
+  top: 10.08rem;
+  right: 0.69rem;
   width: 0.96rem;
   height: 0.96rem;
 }

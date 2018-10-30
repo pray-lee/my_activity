@@ -15,7 +15,7 @@
     mounted() {
       setTimeout(() => {
         this.show = !this.show
-      }, 12000)
+      }, 1000)
     }
   }
 </script>
