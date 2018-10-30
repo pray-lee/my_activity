@@ -20,9 +20,9 @@
 
 <script>
 import html2canvas from 'html2canvas'
+import axios from 'axios'
 import Listener from '@/common/eventBus'
 import submitQuestion from '@/api/submitQuestion'
-import QRCode from 'qrcode'
 export default {
   name: "poster",
   data() {
@@ -45,35 +45,28 @@ export default {
       //获取海报数据
       let result = await submitQuestion.getPoster(options)
       this.result = result.data;
-      //转用户头像和二维码
+      //get local headimg url
       this._renderImg()
     },
     async _renderImg() {
-      await this._initPosterImg(this.userHeadImg, this.$refs.userHeadImg)
+      await this._getLocalHeadImg(this.userHeadImg, this.$refs.userHeadImg)
       //截图
       this._toImage()
     },
-    _initPosterImg (src, ele) {
+    _getLocalHeadImg(src, ele) {
       return new Promise((resolve, reject) => {
-        var image = new Image();
-        image.setAttribute('crossOrigin', 'anonymous');
-        image.src = src
-        image.onload = () => {
-          var base64 = this._getBase64Image(image);
-          ele.src = base64
-          resolve('success')
-        }
+        axios.get('/wechat/exchange', {
+          params: {
+            url: src
+          }
+        })
+         .then(res => {
+           console.log(res)
+           ele.src = res.data.data
+           console.log('%c get local headImg success...', 'font-size: 24;color:#ff6767')
+           resolve('get local headImg success...')
+          }) 
       })
-    },
-    _getBase64Image(img) {
-      var canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, img.width, img.height);
-      var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
-      var dataURL = canvas.toDataURL("image/jpeg");
-      return dataURL;
     },
     _toImage() {
       html2canvas(document.getElementById('poster'),{
@@ -179,18 +172,20 @@ export default {
   margin-left: 0.20rem;
 }
 #poster .poster-word{
-  transform-origin: left;
-  transform: scale(.6);
+  transform-origin:center;
+  transform:scale(.75);
   position: absolute;
   z-index:1;
   top:8.8rem;
-  left: 1rem;
+  left: 50%;
   width: 7.81rem;
   height: 1.59rem;
   margin: 0 auto;
+  margin-left: -3.905rem;
+  padding-top: .2rem;
   text-align:center;
   color:#494949;
-  font-size: 0.10rem;
+  font-size: .24rem;
   word-break: break-all;
 }
 .qrcode{
@@ -202,6 +197,12 @@ export default {
   height: 0.96rem;
 }
 .qrcode img{
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  margin:auto;
   width: 100%;
   height: 100%;
 }

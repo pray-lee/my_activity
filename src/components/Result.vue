@@ -102,6 +102,8 @@
             _this.userHeadImg = data.headimgurl;
             resolve(data)
           });
+          _this.userHeadImg = 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJEPkVPycicVDWtHhXLX51B0tTywkvmL9ibgnSoiavuWiaQkewDY22KibdhPkofp571fo4XHxqRCY8gAog/132'
+          resolve()
         })
       },
       _getOpenIdList(userInfo) {
