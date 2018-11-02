@@ -2,18 +2,18 @@
   <div id="poster">
     <img ref="base64ImgPoster" :src="result.bgImg" v-if="!!result.bgImg" class="img-bg">
     <div id="canvas-wrapper" v-if="!!dataURL">
-      <img :src="dataURL" alt="" id="canvas">
+      <img :src="dataURL" alt="" id="canvas" v-preview="dataURL">
     </div>
     <div class="title clearfix">
       <div class="head-img">
-        <img v-if="!!userHeadImg" :src="userHeadImg" alt="" ref="userHeadImg">
+        <img v-if="!!userHeadImg" src="" alt="" ref="userHeadImg">
       </div>
       <div class="title-word" v-html="titleWord"></div>
     </div>
     <div class="poster-word" v-if="result&&result.pdesc" v-html="result.pdesc">
     </div>
     <div class="qrcode">
-      <img v-if="!!qrcodeUrl" :src="qrcodeUrl" alt="" ref="qrcodeUrl">
+      <img v-if="ticket" src="" alt="" ref="qrcodeUrl">
     </div>
   </div>
 </template>
@@ -22,7 +22,13 @@
 import html2canvas from 'html2canvas'
 import axios from 'axios'
 import Listener from '@/common/eventBus'
+import config from '@/api/config'
 import submitQuestion from '@/api/submitQuestion'
+//图片预览
+import Vue from 'vue'
+import vuePicturePreview from 'vue-picture-preview'
+Vue.use(vuePicturePreview)
+
 export default {
   name: "poster",
   data() {
@@ -30,32 +36,31 @@ export default {
       dataURL: '',
       result: {},
       titleWord: Listener.gameData.nameZh,
-      qrcodeUrl: Listener.qrcodeUrl,
     }
   },
-  props: ['userHeadImg'],
+  props: ['userHeadImg', 'ticket'],
   mounted() {
     console.log('%c poster mounted', 'font-weight:bold;color:#ff5252;font-size: 18px')
     //获取海报数据
     this._submit(Listener.postData)
-    //把所有需要转码的图片转成base64
   },
   methods: {
     async _submit(options) {
-      //获取海报数据
       let result = await submitQuestion.getPoster(options)
       this.result = result.data;
-      //get local headimg url
+      //get local img url
       this._renderImg()
     },
     async _renderImg() {
-      await this._getLocalHeadImg(this.userHeadImg, this.$refs.userHeadImg)
+      await this._getLocalImg(this.userHeadImg, this.$refs.userHeadImg)
+      await this._getLocalImg(`https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${this.ticket}`, this.$refs.qrcodeUrl)
       //截图
+      console.log('截图开始...')
       this._toImage()
     },
-    _getLocalHeadImg(src, ele) {
+    _getLocalImg(src, ele) {
       return new Promise((resolve, reject) => {
-        axios.get('/wechat/exchange', {
+        axios.get(`/wechat/exchange`, {
           params: {
             url: src
           }
@@ -63,8 +68,8 @@ export default {
          .then(res => {
            console.log(res)
            ele.src = res.data.data
-           console.log('%c get local headImg success...', 'font-size: 24;color:#ff6767')
-           resolve('get local headImg success...')
+           console.log('%c get local img success...', 'font-size: 24;color:#ff6767')
+           resolve('get local img success...')
           }) 
       })
     },

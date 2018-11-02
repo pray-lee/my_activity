@@ -4,7 +4,7 @@
       <div class="result-wrapper">
         <div class="poster-notice">
         </div>
-        <Poster v-if="!!userHeadImg" :userHeadImg="userHeadImg" class="poster"></Poster>
+        <Poster v-if="!!ticket" :userHeadImg="userHeadImg" :ticket="ticket" class="poster"></Poster>
         <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
         <Button word="重新测一次" class="button" @click.native="goBack"></Button>
         <Swiper></Swiper>
@@ -28,11 +28,11 @@
           <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
           <div class="title-second">长按保存图片并分享好友，邀请好友关注，免费get珠宝。</div>
           <div class="rule-content">
-            <p>邀请6名好友关注即可获得<span>300</span>元代金券</p>
+            <p>邀请6名好友关注可获得<span>300</span>元珠宝兑换券（无门槛使用）</p>
             <!--<p>任意产品使用</p>-->
-            <p>邀请9名好友关注即可获得<span>600</span>元代金券</p>
+            <p>邀请9名好友关注可获得<span>600</span>元珠宝兑换券（无门槛使用）</p>
             <!--<p>对应产品使用</p>-->
-            <p>邀请30名好友关注即可获得<span>2000</span>元代金券</p>
+            <p>邀请30名好友关注可获得<span>2000</span>元珠宝兑换券（限量300份）</p>
             <!--<p>限定产品使用</p>-->
           </div>
           <div class="notice">
@@ -61,6 +61,7 @@
       return {
         inviteUserHeadList: [],
         userHeadImg: '',
+        ticket: '',
         scroll: null,
         showOrHide: {
           show: false
@@ -87,6 +88,8 @@
         this.$router.push({path: '/question'})
       },
       async init() {
+        //获取用户微信二维码票据
+        await this._getQRCodeTicket(userInfo)
         //获取微信用户信息
         let userInfo = await this._getUserInfo()
         // 获取邀请列表（获取openid列表）
@@ -94,15 +97,39 @@
         //获取邀请用户头像(获取openid对应的用户头像)
         this._getUserHeadImgList(inviteList)
       },
-      //获取微信用户信息
       _getUserInfo () {
         let _this = this;
         return new Promise((resolve, reject) => {
-          $.getJSON('https://socialmarketing.aicrmplus.com/wechart_h5/services/wx/me/', function(data){
+          $.getJSON('/wechart_h5/services/wx/me/', function(data){
             _this.userHeadImg = data.headimgurl;
             resolve(data)
           });
           _this.userHeadImg = 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJEPkVPycicVDWtHhXLX51B0tTywkvmL9ibgnSoiavuWiaQkewDY22KibdhPkofp571fo4XHxqRCY8gAog/132'
+          resolve()
+        })
+      },
+      _getQRCodeTicket(userInfo) {
+        console.log(Listener.gameData.id)
+        console.log('%c getQRCodeOriginImg---', 'font-weight:bold;color:#ff5252;font-size: 18px')
+        let _this = this
+        return new Promise((resolve, reject) => {
+          // $.ajax({
+          //   type: 'POST',
+          //   url: `/api/MktWeChatInfo/getQrcode`,
+          //   data: {
+          //     appid: userInfo.addid,
+          //     openid: userInfo.openid,
+          //     id: Listener.gameData.id,
+          //     type: 'POSTER'
+          //   },
+          //   success: function (data) {
+          //     if(data.code == 0){
+          //       _this.ticket = data.dataObject.ticket
+          //       console.log(Listener.ticket, 'qrcode ticket....')
+          //     }
+          //   }
+          // })
+          _this.ticket = 'gQEC8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyMy1abEFBU2xmbmwxWV9laXhyY0MAAgS-k8lbAwSAOgkA'
           resolve()
         })
       },
@@ -111,7 +138,7 @@
         return new Promise((resolve, reject) => {
           $.ajax({
             type: 'POST',
-            url: 'https://socialmarketing.aicrmplus.com/wechart_h5/services/getPullMembers',
+            url: `/wechart_h5/services/getPullMembers`,
             data: {
               appId: userInfo.appid,
               openId: userInfo.openid,
@@ -138,7 +165,7 @@
         let _this = this;
         $.ajax({
           type: 'POST',
-          url: 'https://socialmarketing.aicrmplus.com/wechart_h5/services/getWxUserInfo',
+          url: `/wechart_h5/services/getWxUserInfo`,
           data: {
             openid: item,
             appid: appId

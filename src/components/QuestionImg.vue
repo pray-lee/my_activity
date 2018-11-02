@@ -56,6 +56,7 @@
     align-items: center;
   }
   .question-title{
+    padding-top: 2rem;
     flex: 0 0 auto;
     margin-right: 1.20rem;
   }

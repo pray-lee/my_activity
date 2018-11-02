@@ -4,6 +4,7 @@
     <Background :url="gameData.bgImg"></Background>
     <Begin></Begin>
     <router-view></router-view>
+    <lg-preview></lg-preview>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
   import Begin from '@/components/Begin'
   import QuestionWrapper from "@/components/QuestionWrapper";
   import startGame from '@/api/startGame'
+  import config from '@/api/config'
   import Listener from '@/common/eventBus'
   import axios from 'axios'
 
@@ -28,10 +30,7 @@
     },
     created() {
       this._getGameData()
-      Listener.qrcodeUrl = this._getQueryString('img')
       Listener.actid = this._getQueryString('actid')
-      // get local qrcode...
-      this._getLocalQRCode()
     },
     components: {
       QuestionWrapper,
@@ -40,16 +39,6 @@
       Begin
     },
     methods: {
-      _getLocalQRCode() {
-        axios.get(`/wechat/exchange`, {params: {
-          url: Listener.qrcodeUrl
-        }})
-          .then(res => {
-            Listener.qrcodeUrl = res.data.data
-            console.log(Listener.qrcodeUrl)
-            console.log('%c getLocalQRCode_success.........', 'font-size: 24px;color:#ff5252')
-          })
-      },
       async _getGameData() {
         let data = await startGame.getData()
         this.gameData = data.data

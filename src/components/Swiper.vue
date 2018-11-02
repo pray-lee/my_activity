@@ -17,6 +17,10 @@
         <!--<div id="tag">市价：<span>600</span></div>-->
         <img src="../assets/images/4.jpg" alt="">
       </swiper-slide>
+      <swiper-slide>
+        <!--<div id="tag">市价：<span>600</span></div>-->
+        <img src="../assets/images/5.jpg" alt="">
+      </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
   </div>

@@ -48,11 +48,11 @@
   display:block;
   content: '';
   position:absolute;
-  top:-.25rem;
+  top:-.05rem;
   left:0;
-  width:1.0666667rem;
-  height: .858667rem;
+  width: 0.72rem;
+  height: 0.64rem;
   background: url(../assets/images/fit_icon.png) center center no-repeat;
-  background-size: 1.066667rem /* 40/37.5 */ .858667rem /* 32.2/37.5 */;
+  background-size: .72rem .64rem
 }
 </style>

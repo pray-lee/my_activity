@@ -55,6 +55,7 @@
     margin: 0 auto;
   }
   .question-title{
+    padding-top: 2rem;
     flex: 0 0 auto;
     margin-right: 1rem;
   }
