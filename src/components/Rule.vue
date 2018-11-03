@@ -5,7 +5,8 @@
         <i class="close" @click="close"></i>
         <div class="title">规则说明</div>
         <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
-        <div class="title-second">长按保存图片并分享好友，邀请好友关注，免费get珠宝。</div>
+        <div class="title-second first">长按保存图片并分享好友</div>
+        <div class="title-second second">邀请好友关注，免费get珠宝。</div>
         <div class="rule-content">
           <p>邀请6名好友关注可获得</p>
           <p><span>300</span>元珠宝兑换券（无门槛使用）</p>
@@ -91,6 +92,12 @@
   color:#222222;
   padding-left: .64rem;
   padding-right: .64rem;
+}
+.title-second.first{
+  margin-bottom: .24rem
+}
+.title-second.second{
+  margin-top: 0
 }
 .rule-content{
   padding-bottom: 1.0rem;

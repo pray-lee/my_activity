@@ -57,6 +57,7 @@
   import Fade from '@/components/Fade'
   import BScroll from 'better-scroll'
   import Listener from '@/common/eventBus'
+  import config from '@/api/config'
   import $ from 'jquery'
 
   export default {
@@ -92,10 +93,10 @@
         this.$router.push({path: '/question'})
       },
       async init() {
-        //获取用户微信二维码票据
-        await this._getQRCodeTicket(userInfo)
         //获取微信用户信息
         let userInfo = await this._getUserInfo()
+        //获取用户微信二维码票据
+        await this._getQRCodeTicket(userInfo)
         // 获取邀请列表（获取openid列表）
         let inviteList = await this._getOpenIdList(userInfo)
         //获取邀请用户头像(获取openid对应的用户头像)
@@ -104,20 +105,19 @@
       _getUserInfo () {
         let _this = this;
         return new Promise((resolve, reject) => {
-          $.getJSON('${config.host}/wechart_h5/services/wx/me/', function(data){
+          $.getJSON(`${config.wechatHost}/wechart_h5/services/wx/me/`, function(data){
             _this.userHeadImg = data.headimgurl;
             resolve(data)
           });
         })
       },
       _getQRCodeTicket(userInfo) {
-        console.log(Listener.gameData.id)
         console.log('%c getQRCodeOriginImg---', 'font-weight:bold;color:#ff5252;font-size: 18px')
         let _this = this
         return new Promise((resolve, reject) => {
            $.ajax({
              type: 'POST',
-             url: `${config.host}/MktWeChatInfo/getQrcode`,
+             url: `${config.wechatHost}/MktWeChatInfo/getQrcode`,
              data: {
                appid: userInfo.addid,
                openid: userInfo.openid,
@@ -139,7 +139,7 @@
         return new Promise((resolve, reject) => {
           $.ajax({
             type: 'POST',
-            url: `${config.host}/wechart_h5/services/getPullMembers`,
+            url: `${config.wechatHost}/wechart_h5/services/getPullMembers`,
             data: {
               appId: userInfo.appid,
               openId: userInfo.openid,
@@ -166,7 +166,7 @@
         let _this = this;
         $.ajax({
           type: 'POST',
-          url: `${config.host}/wechart_h5/services/getWxUserInfo`,
+          url: `${config.wechatHost}/wechart_h5/services/getWxUserInfo`,
           data: {
             openid: item,
             appid: appId
@@ -193,15 +193,13 @@
     background:#e7e7e6;
   }
   .poster-notice{
-    width: 9rem;
-    height: 1.33rem;
+    width: 8.32rem;
+    height: 0.64rem;
     line-height: 1.33rem;
-    font-size: 0.24rem;
-    color:#333;
     margin-left: 0.69rem;
     font-weight: bold;
     background: url('../assets/images/notice.png') left center no-repeat;
-    background-size: 6.35rem .27rem;
+    background-size: 8.32rem .64rem;
   }
   #result .rule-position {
     top: 10.61rem;

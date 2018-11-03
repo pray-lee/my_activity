@@ -13,11 +13,11 @@
 
 <style scoped>
 #next-button{
-  width: 5.813333rem /* 218/37.5 */;
-  height: 1.493333rem /* 56/37.5 */;
+  width: 5.6rem;
+  height: 1.28rem /* 56/37.5 */;
   margin: 0 auto;
   background:url('../assets/images/button-bg.png') center center no-repeat;
-  background-size: 5.813333rem 1.493333rem
+  background-size: 5.6rem 1.28rem
 }
   #next-button button{
     position:relative;
