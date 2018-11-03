@@ -29,14 +29,11 @@
           <div class="title-second first">长按保存图片并分享好友</div>
           <div class="title-second second">邀请好友关注，免费get珠宝</div>
           <div class="rule-content">
-            <p>邀请6名好友关注可获得</p>
-            <p><span>300</span>元珠宝兑换券（无门槛使用）</p>
+            <p>邀请6名好友关注可获<span>300</span>元珠宝兑换券（无门槛使用）</p>
             <!--<p>任意产品使用</p>-->
-            <p>邀请9名好友关注可获得</p>
-            <p><span>600</span>元珠宝兑换券（无门槛使用）</p>
+            <p>邀请9名好友关注可获<span>600</span>元珠宝兑换券（无门槛使用）</p>
             <!--<p>对应产品使用</p>-->
-            <p>邀请30名好友关注可获得</p>
-            <p><span>2000</span>元珠宝兑换券（限量300份）</p>
+            <p>邀请9名好友关注可获<span>2000</span>元珠宝兑换券（限量300份）</p>
             <!--<p>限定产品使用</p>-->
           </div>
           <div class="notice">
@@ -117,9 +114,9 @@
         return new Promise((resolve, reject) => {
            $.ajax({
              type: 'POST',
-             url: `${config.wechatHost}/MktWeChatInfo/getQrcode`,
+             url: `${config.wechatHost}/wechart_h5/services/wx/getQrCode`,
              data: {
-               appid: userInfo.addid,
+               appid: userInfo.appid,
                openid: userInfo.openid,
                id:'c44ed55a9ab911e8979600163e008088',
                type: 'ACTION'
@@ -193,13 +190,13 @@
     background:#e7e7e6;
   }
   .poster-notice{
-    width: 8.32rem;
-    height: 0.64rem;
+    width: 7.76rem;
+    height:1.33rem;
     line-height: 1.33rem;
-    margin-left: 0.69rem;
+    margin: 0 auto;
     font-weight: bold;
-    background: url('../assets/images/notice.png') left center no-repeat;
-    background-size: 8.32rem .64rem;
+    background: url('../assets/images/notice.png') center center no-repeat;
+    background-size: 5.76rem 0.406667rem;
   }
   #result .rule-position {
     top: 10.61rem;
@@ -308,7 +305,7 @@
     color: #222222
   }
   .title-second.first{
-    margin-bottom:.24rem
+    margin-bottom:0
   }
   .title-second.second{
     margin-top: 0

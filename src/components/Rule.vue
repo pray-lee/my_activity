@@ -1,45 +1,51 @@
 <template>
   <Fade>
-    <div id="rule-wrapper">
-      <div id="rule">
-        <i class="close" @click="close"></i>
-        <div class="title">规则说明</div>
-        <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
-        <div class="title-second first">长按保存图片并分享好友</div>
-        <div class="title-second second">邀请好友关注，免费get珠宝。</div>
-        <div class="rule-content">
+  <div id="rule-wrapper">
+    <div id="rule">
+      <i class="close" @click="close"></i>
+      <div class="title">规则说明</div>
+      <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
+      <div class="title-second first">长按保存图片并分享好友</div>
+      <div class="title-second second">邀请好友关注，免费get珠宝。</div>
+      <div class="rule-content">
+        <div class="rule-content-wrapper">
           <p>邀请6名好友关注可获得</p>
           <p><span>300</span>元珠宝兑换券（无门槛使用）</p>
-          <!--<p class="small">任意产品使用</p>-->
+        </div>
+        <!--<p class="small">任意产品使用</p>-->
+        <div class="rule-content-wrapper">
           <p>邀请9名好友关注可获得</p>
           <p><span>600</span>元珠宝兑换券（无门槛使用）</p>
-          <!--<p class="small">对应产品使用</p>-->
+        </div>
+        <!--<p class="small">对应产品使用</p>-->
+        <div class="rule-content-wrapper">
           <p>邀请30名好友关注可获得</p>
           <p><span>2000</span>元珠宝兑换券（限量300份）</p>
-          <!--<p class="small">限定产品使用</p>-->
         </div>
-        <div class="notice">
-          <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
-        </div>
+        <!--<p class="small">限定产品使用</p>-->
+      </div>
+      <div class="notice">
+        <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
       </div>
     </div>
+  </div>
   </Fade>
 </template>
 
 <script>
-  import Fade from '@/components/Fade'
-  import Listener from '@/common/eventBus'
-  export default {
-    name: "Rule",
-    components: {
-      Fade
-    },
-    methods: {
-      close () {
-        Listener.$emit('close')
-      }
+import Fade from '@/components/Fade'
+import Listener from '@/common/eventBus'
+export default {
+  name: "Rule",
+  components: {
+    Fade
+  },
+  methods: {
+    close () {
+      Listener.$emit('close')
     }
   }
+}
 </script>
 
 <style scoped>
@@ -94,10 +100,14 @@
   padding-right: .64rem;
 }
 .title-second.first{
-  margin-bottom: .24rem
+  margin-bottom: 0
 }
 .title-second.second{
   margin-top: 0
+}
+
+.rule-content-wrapper{
+  margin-bottom: .5rem
 }
 .rule-content{
   padding-bottom: 1.0rem;
@@ -107,7 +117,7 @@
   padding-right: 0.64rem;
   text-align:left;
   line-height: 0.43rem;
-  margin-bottom: 0.27rem;
+  margin-bottom: 0.08rem;
   font-size: 0.32rem;
   color:#222222
 }
@@ -115,12 +125,13 @@
   font-size: 0.53rem;
   font-weight:500;
   margin:0 0.08rem;
+  margin-left:0 
 }
 .notice{
   margin:0 auto;
   width: 6.37rem;
   line-height: 0.43rem;
-  text-align: center;
+  text-align:left;
   font-size: 0.25rem;
   color:#666666
 }
