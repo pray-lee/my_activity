@@ -7,11 +7,14 @@
         <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
         <div class="title-second">长按保存图片并分享好友，邀请好友关注，免费get珠宝。</div>
         <div class="rule-content">
-          <p>邀请6名好友关注可获得<span>300</span>元珠宝兑换券（无门槛使用）</p>
+          <p>邀请6名好友关注可获得</p>
+          <p><span>300</span>元珠宝兑换券（无门槛使用）</p>
           <!--<p class="small">任意产品使用</p>-->
-          <p>邀请9名好友关注可获得<span>600</span>元珠宝兑换券（无门槛使用）</p>
+          <p>邀请9名好友关注可获得</p>
+          <p><span>600</span>元珠宝兑换券（无门槛使用）</p>
           <!--<p class="small">对应产品使用</p>-->
-          <p>邀请30名好友关注可获得<span>2000</span>元珠宝兑换券（限量300份）</p>
+          <p>邀请30名好友关注可获得</p>
+          <p><span>2000</span>元珠宝兑换券（限量300份）</p>
           <!--<p class="small">限定产品使用</p>-->
         </div>
         <div class="notice">
@@ -57,7 +60,7 @@
   right: 0;
   background:#fff;
   width: 7.65rem;
-  height: 10.5rem;
+  height: 12.5rem;
   margin: auto
 }
 .close{

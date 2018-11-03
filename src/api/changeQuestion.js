@@ -4,7 +4,7 @@ export default {
   getData(qkey, page) {
     console.log(page)
     return new Promise((resolve) => {
-      axios.get(`/question/change?qKey=${qkey}`, {params: {page: page}})
+      axios.get(`${config.host}/question/change?qKey=${qkey}`, {params: {page: page}})
         .then(res => {
           resolve(res.data)
         })

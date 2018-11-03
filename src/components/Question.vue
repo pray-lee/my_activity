@@ -41,8 +41,7 @@
   width: 6.826667rem /* 256/37.5 */;
   line-height: .666667rem /* 25/37.5 */;
   text-align:left;
-  font-size: .426667rem /* 16/37.5 */;
-  margin-right:.5rem
+  font-size: 0.48rem /* 16/37.5 */;
 }
 .check-item{
   flex:0 0 auto;

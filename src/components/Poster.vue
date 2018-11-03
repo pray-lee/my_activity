@@ -60,7 +60,7 @@ export default {
     },
     _getLocalImg(src, ele) {
       return new Promise((resolve, reject) => {
-        axios.get(`/wechat/exchange`, {
+        axios.get(`${config.host}/wechat/exchange`, {
           params: {
             url: src
           }

@@ -26,13 +26,17 @@
         <div class="rule">
           <div class="title">规则说明</div>
           <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
-          <div class="title-second">长按保存图片并分享好友，邀请好友关注，免费get珠宝。</div>
+          <div class="title-second first">长按保存图片并分享好友</div>
+          <div class="title-second second">邀请好友关注，免费get珠宝</div>
           <div class="rule-content">
-            <p>邀请6名好友关注可获得<span>300</span>元珠宝兑换券（无门槛使用）</p>
+            <p>邀请6名好友关注可获得</p>
+            <p><span>300</span>元珠宝兑换券（无门槛使用）</p>
             <!--<p>任意产品使用</p>-->
-            <p>邀请9名好友关注可获得<span>600</span>元珠宝兑换券（无门槛使用）</p>
+            <p>邀请9名好友关注可获得</p>
+            <p><span>600</span>元珠宝兑换券（无门槛使用）</p>
             <!--<p>对应产品使用</p>-->
-            <p>邀请30名好友关注可获得<span>2000</span>元珠宝兑换券（限量300份）</p>
+            <p>邀请30名好友关注可获得</p>
+            <p><span>2000</span>元珠宝兑换券（限量300份）</p>
             <!--<p>限定产品使用</p>-->
           </div>
           <div class="notice">
@@ -100,12 +104,10 @@
       _getUserInfo () {
         let _this = this;
         return new Promise((resolve, reject) => {
-          $.getJSON('/wechart_h5/services/wx/me/', function(data){
+          $.getJSON('${config.host}/wechart_h5/services/wx/me/', function(data){
             _this.userHeadImg = data.headimgurl;
             resolve(data)
           });
-          _this.userHeadImg = 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJEPkVPycicVDWtHhXLX51B0tTywkvmL9ibgnSoiavuWiaQkewDY22KibdhPkofp571fo4XHxqRCY8gAog/132'
-          resolve()
         })
       },
       _getQRCodeTicket(userInfo) {
@@ -113,24 +115,23 @@
         console.log('%c getQRCodeOriginImg---', 'font-weight:bold;color:#ff5252;font-size: 18px')
         let _this = this
         return new Promise((resolve, reject) => {
-          // $.ajax({
-          //   type: 'POST',
-          //   url: `/api/MktWeChatInfo/getQrcode`,
-          //   data: {
-          //     appid: userInfo.addid,
-          //     openid: userInfo.openid,
-          //     id: Listener.gameData.id,
-          //     type: 'POSTER'
-          //   },
-          //   success: function (data) {
-          //     if(data.code == 0){
-          //       _this.ticket = data.dataObject.ticket
-          //       console.log(Listener.ticket, 'qrcode ticket....')
-          //     }
-          //   }
-          // })
-          _this.ticket = 'gQEC8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyMy1abEFBU2xmbmwxWV9laXhyY0MAAgS-k8lbAwSAOgkA'
-          resolve()
+           $.ajax({
+             type: 'POST',
+             url: `${config.host}/MktWeChatInfo/getQrcode`,
+             data: {
+               appid: userInfo.addid,
+               openid: userInfo.openid,
+               id:'c44ed55a9ab911e8979600163e008088',
+               type: 'ACTION'
+             },
+             success: function (data) {
+               if(data.code == 0){
+                 _this.ticket = data.dataObject.ticket
+                 console.log(Listener.ticket, 'qrcode ticket....')
+                 resolve()
+               }
+             }
+           })
         })
       },
       _getOpenIdList(userInfo) {
@@ -138,7 +139,7 @@
         return new Promise((resolve, reject) => {
           $.ajax({
             type: 'POST',
-            url: `/wechart_h5/services/getPullMembers`,
+            url: `${config.host}/wechart_h5/services/getPullMembers`,
             data: {
               appId: userInfo.appid,
               openId: userInfo.openid,
@@ -165,7 +166,7 @@
         let _this = this;
         $.ajax({
           type: 'POST',
-          url: `/wechart_h5/services/getWxUserInfo`,
+          url: `${config.host}/wechart_h5/services/getWxUserInfo`,
           data: {
             openid: item,
             appid: appId
@@ -307,6 +308,12 @@
     line-height: 24px;
     font-size: 0.43rem;
     color: #222222
+  }
+  .title-second.first{
+    margin-bottom:.24rem
+  }
+  .title-second.second{
+    margin-top: 0
   }
 
   .rule-content {

@@ -57,12 +57,12 @@
   .question-title{
     padding-top: 2rem;
     flex: 0 0 auto;
-    margin-right: 1rem;
+
   }
   .question-title >>> .title{
     font-size: 0.5rem;
     font-weight: bold;
-    width: 6.5rem;
+    width: 7.893333rem;
     line-height: 0.8rem;
     text-align:left;
   }

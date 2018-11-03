@@ -25,7 +25,8 @@
   margin-top: 0.99rem;
   margin-bottom: 0.79rem /* 8/37.5 */;
   white-space: normal;
-  text-align:center
+  text-align:center;
+  word-break:break-all
 }
 .title-img{
   width:10rem;
