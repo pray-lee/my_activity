@@ -52,6 +52,7 @@ export default {
       this._renderImg()
     },
     async _renderImg() {
+      console.log(this.userHeadImg, this.ticket)
       await this._getLocalImg(this.userHeadImg, this.$refs.userHeadImg)
       await this._getLocalImg(`https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${this.ticket}`, this.$refs.qrcodeUrl)
       //截图

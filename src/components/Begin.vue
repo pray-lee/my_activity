@@ -1,15 +1,20 @@
 <template>
   <transition leave-active-class="animated fadeOut">
-    <div id="begin" v-show="show"></div>
+    <div id="begin" v-show="show" :style="styleObject"></div>
   </transition>
 </template>
 
 <script>
+  import gif from '@/assets/images/begin.gif'
   export default {
     name: "Begin",
     data() {
       return {
-        show: true
+        show: true,
+        styleObject: {
+          background: `url(${gif}?v=${new Date().getTime()}) center center no-repeat`,
+          backgroundSize: 'cover'
+        }
       }
     },
     mounted() {
@@ -29,7 +34,5 @@
   right:0;
   bottom:0;
   margin: auto;
-  background: url('../assets/images/begin.gif') center center no-repeat;
-  background-size: cover
 }
 </style>
