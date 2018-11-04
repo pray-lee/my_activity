@@ -1,7 +1,8 @@
 <template>
   <transition leave-active-class="animated fadeOut">
     <div id="begin" v-show="show">
-      <img :src="url" alt="" @load="loaded" v-show="imgShow">
+      <div id="loading" v-show="loadingShow"></div>
+      <img :src="url" alt="" @load="loaded" v-show="imgShow" ref="beginImg">
     </div>
   </transition>
 </template>
@@ -14,12 +15,13 @@
       return {
         show:true,
         imgShow: false,
+        loadingShow: true,
         url: ''
       }
     },
     methods: {
       loaded() {
-        alert('加载完成')
+        this.loadingShow = false
         this.imgShow = true
         this.$nextTick(() => {
           setTimeout(() => {
@@ -30,7 +32,7 @@
       }
     },
     mounted() {
-      alert('开始加载')
+      this.loadingShow = true;
       this.url = `${gif}?v=${new Date().getTime()}`
     }
   }
@@ -45,18 +47,27 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    background:#e7e7e6
+    background-color:#e7e7e6;
   }
-
+  #loading{
+    position:fixed;
+    z-index:100000;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    margin:auto;
+    background:url(../assets/images/loading.gif) center center no-repeat;
+    background-size: cover
+  }
   #begin img {
-    width: 12.32rem;
-    height: 22rem;
+    display:block;
+    min-width: 100%;
+    min-height: 100%;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -1.16rem;
-    right: 0;
-    margin: auto;
-    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    object-fit: cover
   }
 </style>
