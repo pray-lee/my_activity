@@ -1,8 +1,8 @@
 <template>
   <div id="app" v-if="gameData!=null">
+    <Begin></Begin>
     <Music :status="musicStatus" :src="gameData.bgMusic"></Music>
     <Background :url="gameData.bgImg"></Background>
-    <Begin></Begin>
     <router-view></router-view>
     <lg-preview></lg-preview>
   </div>
@@ -14,9 +14,7 @@
   import Begin from '@/components/Begin'
   import QuestionWrapper from "@/components/QuestionWrapper";
   import startGame from '@/api/startGame'
-  import config from '@/api/config'
   import Listener from '@/common/eventBus'
-  import axios from 'axios'
 
   export default {
     name: 'App',
@@ -73,7 +71,6 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
   }
-
   #app {
     width: 10rem;
   }
