@@ -13,14 +13,19 @@
 		  let count = 0
 		  if(!this.status){
 		    setInterval( () => {
-		      if(count>=98){
-		        return
+		      if(!this.status){
+            if(count>=98){
+              return
+            }
+            count++
+            this.$refs.progress.style.width = count + '%'
+          }else{
+		        this.$refs.progress.style.width = 100 + '%'
+            this.$emit('loadingFinish')
           }
-		      count++
-          this.$refs.progress.style.width = count + '%'
         }, 100)
       }
-    }
+    },
 	}
 </script>
 <style scoped>
