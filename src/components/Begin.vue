@@ -1,7 +1,7 @@
 <template>
   <transition leave-active-class="animated fadeOut">
     <div id="begin" v-show="show">
-      <div id="loading" v-show="loadingShow"></div>
+      <Loading :status="isLoaded"></Loading>
       <img :src="url" alt="" @load="loaded" v-show="imgShow" ref="beginImg">
     </div>
   </transition>
@@ -9,30 +9,32 @@
 
 <script>
   import gif from '@/assets/images/begin.gif'
+  import Loading from './Loading'
   export default {
     name: "Begin",
+    components: {Loading},
     data() {
       return {
         show:true,
+        isLoaded: false,
         imgShow: false,
-        loadingShow: true,
         url: ''
       }
     },
     methods: {
       loaded() {
-        this.loadingShow = false
+        this.isLoaded = true
         this.imgShow = true
         this.$nextTick(() => {
           setTimeout(() => {
-            this.imgShow = !this.imgShow
-            this.show = !this.show
+            // this.imgShow = !this.imgShow
+            // this.show = !this.show
           }, 24000)
         })
       }
     },
     mounted() {
-      this.loadingShow = true;
+        this.isLoaded = false
       this.url = `${gif}?v=${new Date().getTime()}`
     }
   }

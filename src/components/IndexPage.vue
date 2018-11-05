@@ -9,7 +9,6 @@
    </div>
   </Fade>
 </template>
-
 <script>
   import QuestionTitle from "@/components/QuestionTitle";
   import Button from "@/components/Button";

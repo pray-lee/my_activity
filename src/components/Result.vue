@@ -157,7 +157,7 @@ export default {
     _getUserHeadImgList(list) {
       console.log('%c getUserHeadImgList---', 'font-weight:bold;color:#ff5252;font-size: 18px')
       list.data.forEach(item => {
-        this._getUserHeadImg(item, list.appId)
+        this._getUserHeadImg(item.openId, list.appId)
       })
     },
     _getUserHeadImg(item, appId) {
