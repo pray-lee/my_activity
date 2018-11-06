@@ -7,6 +7,8 @@ import './assets/lib/flexible'
 import './css/reset.css'
 import './css/animate.css'
 Vue.config.productionTip = false
+import wxShare from '@/common/wxShare'
+wxShare();
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
