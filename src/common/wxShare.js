@@ -6,11 +6,11 @@ import wxConfig from './wx/wxConfig'
 import wxReady from './wx/wxReady'
 export default wxShare 
 
-async function wxShare() {
+async function wxShare(shareOptions) {
   let appId = await getAppId()
-  getWxConfig(appId)
+  getWxOptions(appId, shareOptions)
 }
-// fn
+// fun
 function getAppId() {
   return new Promise((resolve, reject) => {
     $.getJSON(`${config.wechatHost}/wechart_h5/services/wx/me/`, function (data) {
@@ -20,7 +20,7 @@ function getAppId() {
   })
 }
 
-function getWxConfig(appId) {
+function getWxOptions(appId, shareOptions) {
   return new Promise((resolve, reject) => {
     axios.get(`${config.wechatHost}/wechart_h5/services/wx/validateUrl`, {
         params: {
@@ -32,7 +32,6 @@ function getWxConfig(appId) {
         console.log(res)
         wxConfig(wx, res.data.data)
         wxReady(wx, shareOptions)
-        resolve('success....')
       })
   })
 }

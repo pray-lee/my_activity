@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import QuestionImg from '@/components/QuestionImg'
-// import QuestionWord from '@/components/QuestionWord'
 import QuestionWrapper from '@/components/QuestionWrapper'
 import IndexPage from '@/components/IndexPage'
 import Rule from '@/components/Rule'

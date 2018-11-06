@@ -1,4 +1,4 @@
-export default function getWxConfig(wx) {
+export default function (wx) {
   let data = {
     appId: '123',
     timestamp: '13esfasdf',
