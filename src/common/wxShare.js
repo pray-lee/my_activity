@@ -14,9 +14,8 @@ async function wxShare(shareOptions) {
 function getAppId() {
   return new Promise((resolve, reject) => {
     $.getJSON(`${config.wechatHost}/wechart_h5/services/wx/me/`, function (data) {
-      // resolve(data.appid)
+      resolve(data.appid)
     });
-    resolve('123')
   })
 }
 
@@ -29,8 +28,7 @@ function getWxOptions(appId, shareOptions) {
         }
       })
       .then(res => {
-        console.log(res)
-        wxConfig(wx, res.data.data)
+        wxConfig(wx, res.data.dataObject)
         wxReady(wx, shareOptions)
       })
   })
