@@ -2,17 +2,15 @@
   <Fade>
   <div id="result">
     <div class="result-wrapper">
-      <div class="poster-notice">
-      </div>
       <div class="poster-wrapper">
         <Poster v-if="!!ticket" :userHeadImg="userHeadImg" :ticket="ticket" class="poster"></Poster>
       </div>
       <RuleButton class="rule-position" :displayObj="showOrHide"></RuleButton>
-      <Button word="重新测一次" class="button" @click.native="goBack"></Button>
-      <Swiper></Swiper>
-      <div id="introduce">
-        <p>邀请好友解锁艺术世界，免费get精美珠宝</p>
+      <div class="save-notice">
+        <p>长按保存图片   下拉更有惊喜</p>
+        <div class="drop-icon"></div>
       </div>
+      <Swiper></Swiper>
       <div id="invite">
         <p>您已经邀请<span>{{inviteUserHeadList.length}}</span>名好友</p>
       </div>
@@ -28,20 +26,21 @@
       <div class="rule">
         <div class="title">规则说明</div>
         <!--<div class="title-second">秀出你的[艺术世界]给好友吧</div>-->
-        <div class="title-second first">长按保存图片并分享好友</div>
-        <div class="title-second second">邀请好友关注，免费get珠宝</div>
+        <div class="title-second">长按保存图片并分享好友</div>
+        <div class="title-second">邀请好友关注，免费get珠宝</div>
         <div class="rule-content">
-          <p>邀请6名好友关注可获<span>300</span>元珠宝兑换券（无门槛使用）</p>
+          <p>邀请6名好友关注可获<span>300</span>元珠宝兑换券<em>（无门槛使用）</em></p>
           <!--<p>任意产品使用</p>-->
-          <p>邀请9名好友关注可获<span>600</span>元珠宝兑换券（无门槛使用）</p>
+          <p>邀请9名好友关注可获<span>600</span>元珠宝兑换券<em>（无门槛使用）</em></p>
           <!--<p>对应产品使用</p>-->
-          <p>邀请30名好友关注可获<span>2000</span>元珠宝兑换券（限量300份）</p>
+          <p>邀请30名好友关注可获<span>2000</span>元珠宝兑换券<em>（限量300份）</em></p>
           <!--<p>限定产品使用</p>-->
         </div>
         <div class="notice">
-          <p>请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
+          <p>*请获奖后凭微信公众号信息到IP国贸旗舰店换取奖品，到店还有更多惊喜</p>
         </div>
       </div>
+      <Button word="重回艺术世界" class="button" @click.native="goBack"></Button>
     </div>
   </div>
 
@@ -187,9 +186,9 @@ export default {
 #result .result-wrapper{
   width:100%;
   height:100%;
-  background: #e7e7e6;
   position:relative;
-  background:#e7e7e6;
+  background:#fff;
+  padding-top: .5rem;
 }
 .poster-wrapper {
   width: 6.40rem;
@@ -201,23 +200,30 @@ export default {
   bottom:0;
   right: 0;
   margin: auto;
-  margin-bottom: .8rem;
+  margin-bottom: .2rem;
   background:#e7e7e6;
-}
-.poster-notice{
-  width: 7.76rem;
-  height:1.33rem;
-  line-height: 1.33rem;
-  margin: 0 auto;
-  font-weight: bold;
-  background: url('../assets/images/notice.png') center center no-repeat;
-  background-size: 5.76rem 0.406667rem;
+  box-shadow: 0px 1px 16px #888888;
 }
 #result .rule-position {
   top: 10.61rem;
   right: 0.61rem !important;
 }
-
+.save-notice{
+  margin-bottom: .5rem
+}
+.save-notice p{
+  font-size: .32rem /* 24/75 */;
+  text-align:center;
+  line-height: .8rem /* 60/75 */;
+  color: #333;
+}
+.drop-icon{
+  margin: .1rem auto;
+  width: .346667rem;
+  height: .32rem;
+  background:url(../assets/images/drop.png) center center no-repeat;
+  background-size: .346667rem /* 26/75 */ .32rem /* 24/75 */
+}
 .poster {
   margin-bottom: 1.20rem;
 }
@@ -231,17 +237,7 @@ export default {
   width: 5.31rem;
   height: 0.77rem;
   margin: 0 auto;
-  margin-bottom: 0.21rem;
-}
-#introduce{
-  height: .77rem;
-  margin-top: .64rem;
-}
-#introduce p{
-  font-weight: bold;
-  font-size: .37rem;
-  color:#333;
-  line-height: .77rem
+  margin-top: .4rem;
 }
 #invite p {
   font-size: 0.37rem;
@@ -251,14 +247,14 @@ export default {
 
 #invite p span {
   font-size: 0.48rem;
+  font-weight:bold;
+  padding:0 .1rem
 }
 
 .invite-list-wrapper {
   width: 9.20rem;
   height: 4.32rem;
   margin: 0 auto;
-  border-top: 0.03rem solid #000;
-  border-bottom: 0.03rem solid #000;
   padding: 0.64rem 0;
 }
 
@@ -286,6 +282,7 @@ export default {
   box-sizing: border-box;
   border: 0.03rem solid transparent;
   overflow:hidden;
+  box-shadow: 1px 1px 8px #888888;
 }
 
 #invite-list img {
@@ -312,21 +309,20 @@ export default {
 .title-second {
   width: auto;
   /*height: 24px;*/
-  margin-bottom: 0.64rem;
-  margin-top: 0.64rem;
+  margin-bottom: 0.08rem;
+  margin-top: 0.08rem;
   text-align: left;
   line-height: 24px;
   font-size: 0.43rem;
-  color: #222222
-}
-.title-second.first{
-  margin-bottom:0
+  color: #222222;
+  font-size: .32rem /* 24/75 */
 }
 .title-second.second{
   margin-top: 0
 }
 
 .rule-content {
+  padding-top: .2rem;
   padding-bottom: .64rem;
 }
 
@@ -338,18 +334,19 @@ export default {
   font-size: 0.32rem;
   color: #222222
 }
-
+.rule-content em{
+  font-style: normal;
+  color:#c5a249
+}
 .rule-content span {
   font-size: 0.53rem;
   font-weight: 500;
   margin: 0 0.08rem;
+  color: #c5a249
 }
-
-.notice {
-  padding-bottom: 0.64rem;
-  line-height: 0.43rem;
-  text-align: left;
-  font-size: 0.25rem;
-  color: #666666
+.notice{
+  text-align:left;
+  font-size: .24rem /* 18/75 */;
+  color:#555555
 }
 </style>

@@ -17,16 +17,14 @@
 <style scoped>
 /* question_img_area */
 .title{
-  width: 9rem;
-  line-height: 1.6rem;
-  font-size: 1.07rem;
+  max-width: 6.666667rem /* 500/75 */;
+  font-size: .44rem /* 33/75 */;
   color: #333;
   margin: 0 auto;
-  margin-top: 0.99rem;
-  margin-bottom: 0.79rem /* 8/37.5 */;
   white-space: normal;
   text-align:center;
-  word-break:break-all
+  word-break:break-all;
+  letter-spacing: .05rem
 }
 .title-img{
   width:10rem;

@@ -4,13 +4,13 @@
       <QuestionTitle :nameZh="title" nameType=0 nameBg="" class="question-title"></QuestionTitle>
       <div id="question_img_items_container">
         <div class="question_img_item" v-for="(item, index) in options.options" :key="index">
-          <img :src="item.oimg" alt="">
           <Checkbox v-if="index==0" :checked="'checked'" :value="item.okey" :name="qkey"
                     @change="receiveValue"></Checkbox>
           <Checkbox v-else :value="item.okey" :name="qkey" @change="receiveValue"></Checkbox>
+          <img :src="item.oimg" alt="">
         </div>
       </div>
-      <ChangeQuestion v-show="isChangeOver" :qkey="qkey" @changeItem="receiveQuestion"></ChangeQuestion>
+      <!-- <ChangeQuestion v-show="isChangeOver" :qkey="qkey" @changeItem="receiveQuestion"></ChangeQuestion> -->
     </div>
   </Fade>
 </template>
@@ -43,42 +43,38 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #question_img{
-    display: flex;
-    flex-direction: column;
-    height: 75vh
-  }
-  #question_img_items_container {
-    display: flex;
-    flex:1 1 auto;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
+#question_img_items_container{
+  display: flex;
+  justify-content:center;
+  align-content: center
+}
   .question-title{
-    padding-top: 2rem;
-    flex: 0 0 auto;
-    margin-right: 1.20rem;
+    padding-top: 3.546667rem /* 266/75 */;
+    padding-bottom: 1.533333rem /* 115/75 */;
   }
   .question-title >>> .title{
-    font-size: 0.53rem;
-    font-weight: bold;
-    width: 6.5rem;
-    line-height: 0.8rem;
-    text-align:left;
+    font-size: .4444rem /* 33.33/75 */;
   }
   .question_img_item {
-    margin: 0 .3rem;
     flex: 0 0 auto;
-    width: 2.666667rem /* 100/37.5 */;
-    height: 3.893333rem /* 146/37.5 */;
+    width: 1.466667rem /* 110/75 */;
+    height: 1.466667rem /* 110/75 */;
+    position:relative;
+    margin: 0 .64rem /* 48/75 */
   }
-
+  .question_img_item >>> label{
+    display:block;
+    width: 1.466667rem /* 110/75 */;
+    height: 1.466667rem /* 110/75 */;
+  }
+  .question_img_item >>> label::after{
+    top: -.8rem;
+    left: .7rem;
+  }
   .question_img_item img {
     display: block;
-    width: 2.13rem /* 80/37.5 */;
-    height: 2.13rem;
+    width: 1.466667rem /* 110/75 */;
+    height: 1.466667rem /* 110/75 */;
     margin: 0 auto;
-    margin-bottom: .8rem /* 30/37.5 */;
   }
 </style>

@@ -16,13 +16,11 @@
 
 <style scoped>
 #background{
-  position:fixed;
+  position:absolute;
   top:0;
-  right:0;
   left:0;
-  bottom:0;
-  background:url('../assets/images/bg.jpg') center center no-repeat;
-  background-size: cover;
-  z-index: -9999
+  z-index: -99999;
+  width: 10rem;
+  height: 17.786667rem /* 1334/75 */;
 }
 </style>

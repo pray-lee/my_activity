@@ -9,7 +9,7 @@
           <question v-else :value="item.okey" :name="qkey" :content="item.ocontent" @change="receiveValue"></question>
         </template>
       </div>
-      <ChangeQuestion v-show="isChangeOver" :qkey="qkey" @changeItem="receiveQuestion"></ChangeQuestion>
+      <!-- <ChangeQuestion v-show="isChangeOver" :qkey="qkey" @changeItem="receiveQuestion"></ChangeQuestion> -->
     </div>
   </Fade>
 </template>
@@ -41,29 +41,17 @@
 </script>
 
 <style scoped>
-  #question-word{
-    display:flex;
-    flex-direction: column;
-    height: 75vh;
-  }
   .question-area {
-    flex: 1 1 auto;
-    display: flex;
-    width: 7.893333rem /* 296/37.5 */;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    padding: 0 1.333333rem /* 100/75 */
   }
   .question-title{
-    padding-top: 2rem;
-    flex: 0 0 auto;
-
+    padding-top: 10.853333rem /* 814/75 */;
+    padding-bottom: .3rem
   }
   .question-title >>> .title{
-    font-size: 0.5rem;
-    font-weight: bold;
-    width: 7.893333rem;
-    line-height: 0.8rem;
-    text-align:left;
+    font-size: .333333rem /* 25/75 */
   }
 </style>

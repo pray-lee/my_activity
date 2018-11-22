@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-if="gameData!=null">
-    <Begin></Begin>
+    <!-- <Begin></Begin> -->
     <Music :status="musicStatus" :src="gameData.bgMusic"></Music>
     <Background :url="gameData.bgImg"></Background>
     <router-view></router-view>
@@ -73,5 +73,6 @@
   }
   #app {
     width: 10rem;
+    height: 17.786667rem /* 1334/75 */;
   }
 </style>

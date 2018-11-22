@@ -1,7 +1,7 @@
 <template>
   <div id="question">
     <div class="question-wrapper">
-      <p>{{content}}</p>
+      <p><span>{{content}}</span></p>
       <Checkbox :value="value" class="check-item" :name="name" :checked="checked" @change="receiveValue"></Checkbox>
     </div>
   </div>
@@ -25,30 +25,28 @@
 
 <style scoped>
 #question{
+  flex: 0 0 auto;
+  width:3rem; 
+  height: .906667rem /* 68/75 */;
+  line-height: .906667rem;
+  margin-bottom: .2rem
+}
+.question-wrapper {
+  position:relative;
+}
+.question-wrapper p{
+  text-align:left
+}
+#question span{
+  border-bottom: .026667rem /* 2/75 */ solid #555;
+  font-size: .333333rem /* 25/75 */;
+}
+.check-item >>> label{
   width: 100%;
-  display:flex;
-  flex:1;
-  flex-direction: column;
-  justify-content: center;
+  height: 100%
 }
-.question-wrapper{
-  display:flex;
-  justify-content: center;
-  align-items: center;
+.check-item >>> label::after{
+  right:-1.2rem;
+  top:0.1rem
 }
-#question p{
-  flex:0 0 auto;
-  width: 6.826667rem /* 256/37.5 */;
-  line-height: .666667rem /* 25/37.5 */;
-  text-align:left;
-  font-size: 0.48rem /* 16/37.5 */;
-}
-.check-item{
-  flex:0 0 auto;
-  /*position:absolute !important;*/
-  /*right: 0;*/
-  /*top: 0rem;*/
-  margin-left:0.2rem;
-}
-
 </style>

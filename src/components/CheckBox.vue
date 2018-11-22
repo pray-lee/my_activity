@@ -14,10 +14,12 @@
 
 <style scoped>
 .img_radio_box{
-  position: relative;
+  position: absolute;
+  top:0;
+  left:0;
   display:block;
-  width: .64rem /* 24/37.5 */;
-  height: .64rem /* 24/37.5 */;
+  width: 100%;
+  height: 100%;
   margin:0 auto;
 }
 .img_radio_box label{
@@ -25,10 +27,8 @@
   top:0;
   left:0;
   display:block;
-  width: 100%;
-  height: 100%;
-  background: url(../assets/images/choose_icon.png) center center no-repeat;
-  background-size: cover
+  width:100%;
+  height: 100%
 }
 .img_radio{
   position:absolute;
@@ -39,20 +39,13 @@
   width:100%;
   height: 100%;
 }
-.img_radio:checked+label{
-  background:none;
-  border:1px solid #000;
-  border-radius: 50%;
-}
 .img_radio:checked+label::after{
   display:block;
   content: '';
   position:absolute;
-  top:-.05rem;
-  left:0;
-  width: 0.72rem;
-  height: 0.64rem;
+  width: .8rem /* 60/75 */;
+  height: .826667rem /* 62/75 */;
   background: url(../assets/images/fit_icon.png) center center no-repeat;
-  background-size: .72rem .64rem
+  background-size: .8rem .826667rem
 }
 </style>

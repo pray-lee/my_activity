@@ -39,11 +39,18 @@
 </script>
 
 <style scoped>
+#index-page{
+  width: 10rem;
+  height: 17.786667rem /* 1334/75 */;
+  border: 1px solid transparent;
+  position:relative;
+  box-sizing: border-box
+}
 #index-page .page-button{
   position: absolute;
-  bottom: 1.23rem;
+  bottom: .453333rem /* 34/75 */;
   left: 50%;
-  margin-left: -2.906667rem
+  margin-left: -1.566665rem
 }
 .rule-button{
   left: 0.43rem;

@@ -13,11 +13,10 @@
 
 <style scoped>
 #next-button{
-  width: 5.6rem;
-  height: 1.28rem /* 56/37.5 */;
+  width: 3.133333rem /* 235/75 */;
+  height: .706667rem /* 53/75 */;
   margin: 0 auto;
-  background:url('../assets/images/button-bg.png') center center no-repeat;
-  background-size: 5.6rem 1.28rem
+  background:#0a0000
 }
   #next-button button{
     position:relative;
@@ -28,12 +27,12 @@
     -webkit-appearance: none;
     border: 1px solid transparent;
     box-sizing: border-box;
-    width: 5.6rem /* 210/37.5 */;
-    height: 1.28rem /* 48/37.5 */;
-    background:#000;
+    width: 3.133333rem;
+    height: .706667rem;
+    background:#0a0000;
     text-align:center;
-    line-height: 1.28rem;
+    line-height: .706667rem;
     color:#fff;
-    font-size: .533333rem /* 20/37.5 */;
+    font-size: .2592rem /* 19.44/75 */;
   }
 </style>
