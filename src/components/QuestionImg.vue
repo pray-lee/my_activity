@@ -60,7 +60,7 @@
     width: 1.466667rem /* 110/75 */;
     height: 1.466667rem /* 110/75 */;
     position:relative;
-    margin: 0 .64rem /* 48/75 */
+    margin: 0 1.04rem /* 48/75 */
   }
   .question_img_item >>> label{
     display:block;

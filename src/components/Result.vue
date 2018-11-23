@@ -229,13 +229,14 @@ export default {
 }
 
 #result .button {
+  margin-top: .3rem;
   margin-bottom: 0.80rem;
   position:static
 }
 
 #invite {
   width: 5.31rem;
-  height: 0.77rem;
+  height: 0.37rem;
   margin: 0 auto;
   margin-top: .4rem;
 }
@@ -299,7 +300,7 @@ export default {
   width: auto;
   text-align: left;
   line-height: 0.67rem;
-  margin-top: 0.80rem;
+  margin-top: 0.20rem;
   margin-bottom: 0.43rem;
   padding-left: 0.21rem;
   font-size: 0.48rem;

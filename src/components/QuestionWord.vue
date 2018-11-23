@@ -17,7 +17,7 @@
 <script>
   import QuestionTitle from '@/components/QuestionTitle';
   import Question from '@/components/Question';
-  import Fade from '@/components/Fade'
+  import Fade from '@/components/Fade';
   import ChangeQuestion from '@/components/ChangeQuestion'
 
   export default {
@@ -45,7 +45,8 @@
     display:flex;
     justify-content:space-around;
     flex-wrap: wrap;
-    padding: 0 1.333333rem /* 100/75 */
+    padding: 0 1.733333rem /* 130/75 */;
+    padding-right:0.5rem
   }
   .question-title{
     padding-top: 10.853333rem /* 814/75 */;

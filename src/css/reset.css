@@ -1,6 +1,6 @@
 @font-face{
   font-family: 'own';
-  src: url('../assets/fonts/SourceHanSansCN-Regular.ttf') format('truetype')
+  src: url('../assets/fonts/SourceHanSansCN-Light.ttf') format('truetype')
 }
 html {
   font-family: own, "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;

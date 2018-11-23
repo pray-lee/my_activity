@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 // router.afterEach((to, from) => {
 //   wxShare(shareOptions);
 // })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

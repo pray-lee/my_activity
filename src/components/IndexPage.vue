@@ -1,6 +1,6 @@
 <template>
   <Fade>
-   <div id="index-page">
+   <div id="index-page" ref="indexBg">
      <QuestionTitle v-if="gameData!=null" :nameType="gameData.nameType" :nameBg="gameData.nameBg" :nameZh="gameData.nameZh"></QuestionTitle>
      <RuleButton :displayObj="ruleStatus" class="rule-button"></RuleButton>
      <router-link to="/question" v-if="gameData!=null">
@@ -21,7 +21,8 @@
       return {
         ruleStatus: {
           show: Listener.gameData.isShowRulesOnOpen
-        }
+        },
+        bgurl: Listener.gameData.bgImg
       }
     },
     components: {
@@ -34,6 +35,10 @@
       gameData() {
         return Listener.gameData
       }
+    },
+    mounted () {
+      this.$refs.indexBg.style.background= `url(${this.bgurl}) center -1.86rem no-repeat`
+      this.$refs.indexBg.style.backgroundSize = '10rem 17.786667rem'
     }
   }
 </script>
@@ -41,14 +46,12 @@
 <style scoped>
 #index-page{
   width: 10rem;
-  height: 17.786667rem /* 1334/75 */;
-  border: 1px solid transparent;
+  height: 100vh /* 1206/75 */;
   position:relative;
-  box-sizing: border-box
 }
 #index-page .page-button{
   position: absolute;
-  bottom: .453333rem /* 34/75 */;
+  bottom: 0.453333rem /* 34/75 */;
   left: 50%;
   margin-left: -1.566665rem
 }

@@ -29,7 +29,7 @@
 .title-img{
   width:10rem;
   height: 10rem;
-  margin-top:.99rem;
+  padding-top:.99rem;
   position:relative;
 }
 .title-img img{

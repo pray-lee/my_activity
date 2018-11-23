@@ -1,7 +1,3 @@
-@font-face{
-  font-family: 'own';
-  src: url('../font/own.TTF') format('truetype')
-}
 #app{
   width: 10rem;
 }

@@ -2,7 +2,6 @@
   <div id="app" v-if="gameData!=null">
     <!-- <Begin></Begin> -->
     <Music :status="musicStatus" :src="gameData.bgMusic"></Music>
-    <Background :url="gameData.bgImg"></Background>
     <router-view></router-view>
     <lg-preview></lg-preview>
   </div>
@@ -10,7 +9,6 @@
 
 <script>
   import Music from '@/components/music'
-  import Background from '@/components/Background'
   import Begin from '@/components/Begin'
   import QuestionWrapper from "@/components/QuestionWrapper";
   import startGame from '@/api/startGame'
@@ -33,7 +31,6 @@
     components: {
       QuestionWrapper,
       Music,
-      Background,
       Begin
     },
     methods: {
@@ -73,6 +70,6 @@
   }
   #app {
     width: 10rem;
-    height: 17.786667rem /* 1334/75 */;
+    height: 100vh /* 1206/75 */;
   }
 </style>

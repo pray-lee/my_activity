@@ -83,7 +83,7 @@
           this.isWord = true
         }
         //加个背景样式
-        this.$refs.questionBg.style.background = `url(${Listener.gameData.questions[flag].qBgImg}) center center no-repeat`
+        this.$refs.questionBg.style.background = `url(${Listener.gameData.questions[flag].qBgImg}) center top no-repeat`
         this.$refs.questionBg.style.backgroundSize = '10rem 17.786667rem'
       },
       //点击切换问题选项
@@ -123,7 +123,7 @@
   #question-wrapper{
     position:relative;
     width: 10rem;
-    height: 17.786667rem /* 1334/75 */;
+    height: 100vh /* 1206/75 */
   }
   #question-wrapper .button {
     position: absolute;
@@ -134,6 +134,7 @@
   #question-wrapper .button.active {
     position: static;
     margin: .3rem auto;
-    margin-top: .8rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
   }
 </style>

@@ -33,6 +33,6 @@
     text-align:center;
     line-height: .706667rem;
     color:#fff;
-    font-size: .2592rem /* 19.44/75 */;
+    font-size: .32rem /* 19.44/75 */;
   }
 </style>
